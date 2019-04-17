@@ -2,19 +2,19 @@ package petitschevaux;
 
 public enum Couleur {
 	
-	ROUGE ("Rouge"),
-	JAUNE ("Jaune"),
-	VERT ("Vert"),
-	BLEU ("Bleu");
+	ROUGE ('R'),
+	JAUNE ('J'),
+	VERT ('V'),
+	BLEU ('B');
 	   
-	private String nom = "";
+	private char symbol;
 	 
 	//Constructeur
-	Couleur(String nom){
-	  this.nom = nom;
+	Couleur(char symbol){
+	  this.symbol = symbol;
 	}
 	   
-	public String getNom(){
-	  return nom;
+	public char getSymbol(){
+	  return symbol;
 	}
 }
