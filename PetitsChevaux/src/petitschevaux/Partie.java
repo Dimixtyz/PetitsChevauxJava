@@ -52,7 +52,7 @@ public class Partie {
 				
 				System.out.println("Choissiser une des couleurs suivantes : ");
 				for(int j = 0; j < couleursDisponible.size(); j++) {
-					System.out.println(j+" "+couleursDisponible.get(j).getSymbol());
+					System.out.println(j+" "+couleursDisponible.get(j).getNom());
 				}
 				
 				
@@ -66,12 +66,13 @@ public class Partie {
 			}
 			
 			couleurChoisi = couleursDisponible.get(rep);
-			System.out.println("La couleur est :"+couleurChoisi.getSymbol());
 			couleursDisponible.remove(rep);
 			
 			
 			joueurs.add(new JoueurHumain(nomChoisi ,couleurChoisi));
 		}
+		
+		sc.close();
 		
 	}
 	
