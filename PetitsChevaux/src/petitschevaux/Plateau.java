@@ -68,6 +68,41 @@ public class Plateau {
 	
 	public void deplacerPionA(Pion p, Case c) {
 		
+		/*
+		 * On retire le cheval de la case ou il est
+		 * 
+		 * On verifie chaque chevaux de chaque cases pour savoir si le cheval est celui passer en parametre
+		 */
+		
+		for(Case cases : chemin) {
+			for(Pion chevaux : cases.getChevaux()) {
+				if(chevaux == p) 
+					cases.retirerCheval(p);
+			}
+		}
+		for(Case cases : ecuries) {
+			for(Pion chevaux : cases.getChevaux()) {
+				if(chevaux == p) 
+					cases.retirerCheval(p);
+			}
+		}
+		/*
+		 * On verifie chaque chevaux de chaque cases de chaque echelle pour savoir si le cheval est celui passer en parametre
+		 */
+		for(ArrayList<CaseDEchelle> ech : echelles) {
+			for(Case cases : ech) {
+				for(Pion chevaux : cases.getChevaux()) {
+					if(chevaux == p) 
+						cases.retirerCheval(p);
+				}
+			}
+		}
+		
+		/*
+		 * On place le cheval sur sa nouvelle case
+		 */
+		
+		c.ajouteCheval(p);
 		
 		
 	}
