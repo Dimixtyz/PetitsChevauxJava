@@ -79,6 +79,47 @@ public class Partie {
 	
 	public void initialiserPlateau() {
 		
+		/**
+		 * Case Chemin
+		 */
+		
+		for(int i = 0; i<56; i++) {
+		plateau.addCaseChemin(new CaseDeChemin());
+		}
+		
+		/**
+		 * Cases Ecurie
+		 */
+		
+		plateau.addCaseEcuries(new CaseEcurie(Couleur.ROUGE));
+		plateau.addCaseEcuries(new CaseEcurie(Couleur.VERT));
+		plateau.addCaseEcuries(new CaseEcurie(Couleur.JAUNE));
+		plateau.addCaseEcuries(new CaseEcurie(Couleur.BLEU));
+		
+		/**
+		 * Cases Echelles
+		 * CE : Arraylist comportant les 6 cases d'une couleur
+		 * On cree 4 ArrayList, une pour chaque couleur
+		 */
+		ArrayList<CaseDEchelle> CE = new ArrayList<CaseDEchelle>();
+		
+		for(int i = 0; i<4; i++) {
+			
+			CE.clear();
+			
+			for(int j = 0; j<6; j++) {
+				if(i==0)
+					CE.add(new CaseDEchelle(Couleur.ROUGE));
+				if(i==1)
+					CE.add(new CaseDEchelle(Couleur.VERT));
+				if(i==2)
+					CE.add(new CaseDEchelle(Couleur.JAUNE));
+				if(i==3)
+					CE.add(new CaseDEchelle(Couleur.BLEU));
+			}
+			
+			plateau.addCaseEchelles(CE);
+		}
 		
 	}
 	
