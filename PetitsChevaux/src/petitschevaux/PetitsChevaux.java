@@ -10,7 +10,7 @@ public class PetitsChevaux {
 		
 		Partie p = new Partie();
 		
-		p.initialiserJoueurs(4);
+		System.out.println();
 		
 	}
 	

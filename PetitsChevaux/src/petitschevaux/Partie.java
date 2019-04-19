@@ -26,6 +26,7 @@ public class Partie {
 		 */
 		
 		Scanner sc = new Scanner(System.in);
+		String nomChoisi;
 		Couleur couleurChoisi;
 		ArrayList<Couleur> couleursDisponible = new ArrayList<Couleur>();
 		couleursDisponible.add(Couleur.BLEU);
@@ -36,9 +37,9 @@ public class Partie {
 		for(int i = 0; i < nb; i++) {  // On cree le nombre de joueurs passer en paramtre de la fonction
 			
 			//Definition du nom du joueur
-			String nomChoisi = "tets";
-			System.out.println("Qu'elle est le nom du joueur "+(i+1));
 			
+			System.out.println("Qu'elle est le nom du joueur "+(i+1));
+			nomChoisi = sc.nextLine();
 			
 			
 			/**
@@ -59,7 +60,7 @@ public class Partie {
 				try {
 					rep = sc.nextInt();
 				}catch (InputMismatchException exception) { 
-				    System.out.println("Seulement des entiers");
+				    System.out.println("Mauvaise entrée");
 				    sc.next();
 				    rep = -1;
 				}
