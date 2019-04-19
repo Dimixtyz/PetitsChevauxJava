@@ -12,6 +12,8 @@ public class PetitsChevaux {
 		
 		System.out.println();
 		
+		p.initialiserPlateau();
+		
 	}
 	
 }

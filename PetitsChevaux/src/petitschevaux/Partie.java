@@ -7,13 +7,19 @@ import java.util.Scanner;
 
 public class Partie {
 	
-	private Random de = new Random();
+	private Random de;
 	private Joueur joueurCourrant;
 	private Plateau plateau;
-	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+	private ArrayList<Joueur> joueurs;
+	
+	/**
+	 * Initialisation des variables
+	 */
 	
 	public Partie() {
-		
+		de = new Random();
+		plateau = new Plateau();
+		joueurs = new ArrayList<Joueur>();
 	}
 	
 	public void initialiserJoueurs(int nb) { 
