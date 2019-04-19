@@ -75,8 +75,9 @@ public class Partie {
 			couleurChoisi = couleursDisponible.get(rep);
 			couleursDisponible.remove(rep);
 			
-			
+				
 			joueurs.add(new JoueurHumain(nomChoisi ,couleurChoisi));
+			sc.nextLine();// Vide le scanner 
 		}
 		
 		sc.close();
