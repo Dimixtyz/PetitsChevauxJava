@@ -60,6 +60,7 @@ public class Plateau {
 	public void afficher() {
 		
 		
+		
 	}
 	
 	/**
@@ -83,7 +84,7 @@ public class Plateau {
 		for(Case cases : ecuries) {
 			for(Pion chevaux : cases.getChevaux()) {
 				if(chevaux == p) 
-					cases.retirerCheval(p);
+					cases.retirerCheval(p); 
 			}
 		}
 		/*
