@@ -27,5 +27,9 @@ public class Case {
 		
 		return false; //////////////////////////////////////////////
 	}
+	
+	public void retirerCheval(Pion p) {
+		chevaux.remove(p);
+	}
 
 }

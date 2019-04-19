@@ -113,6 +113,21 @@ public class Partie {
 	
 	private void mangerLesPions(Case c) {
 		
+		/**
+		 * Pour tous les pions p present sur la case c
+		 * on les ajoute a l'ecurie qui correspond à leur 
+		 * couleur et on les retire de la case c
+		 */
+		
+		for(Pion p : c.getChevaux()) {
+			
+			for(CaseEcurie ce : plateau.getEcuries()) {
+				if(p.getCouleur() == ce.getCouleur()) {
+					ce.ajouteCheval(p);
+				}
+			}
+			c.retirerCheval(p);
+		}
 	}
 
 }
