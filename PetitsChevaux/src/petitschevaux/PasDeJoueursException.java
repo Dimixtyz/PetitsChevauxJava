@@ -3,11 +3,11 @@ package petitschevaux;
 public class PasDeJoueursException extends Exception{
 	
 	PasDeJoueursException(){
-		
+		System.out.println("Il n'y a pas de joueurs !");
 	}
 	
-	PasDeJoueursException(String s){
-		
+	PasDeJoueursException(String message){
+		super(message);
 	}
 	
 	PasDeJoueursException(Throwable t){

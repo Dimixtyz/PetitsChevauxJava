@@ -31,7 +31,12 @@ public class PetitsChevaux {
 			    nombreDeJoueurs = -1;
 			}
 		}while(nombreDeJoueurs < 0 || nombreDeJoueurs > 4);// Verification que le nombre de joueurs et compris entre 1 et 4
-		p.initialiserJoueurs(nombreDeJoueurs);
+		
+		try {
+			p.initialiserJoueurs(nombreDeJoueurs);
+		}catch(PasDeJoueursException e) {
+			System.out.println("Aucun joueurs");
+		}
 		
 	}
 	

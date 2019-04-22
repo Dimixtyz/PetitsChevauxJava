@@ -22,7 +22,7 @@ public class Partie {
 		joueurs = new ArrayList<Joueur>();
 	}
 	
-	public void initialiserJoueurs(int nb) { 
+	public void initialiserJoueurs(int nb) throws PasDeJoueursException { 
 		
 		/**
 		 * Definition des variables global de la fonction
@@ -30,58 +30,62 @@ public class Partie {
 		 * couleurChoisi : Couleur selectionnée par l'utilisateur
 		 * couleursDisponible : ArrayList des couleurs disponibles à la selection
 		 */
+		if(nb == 0) {
+			throw new PasDeJoueursException();
+		}else {
 		
-		Scanner sc = new Scanner(System.in);
-		String nomChoisi;
-		Couleur couleurChoisi;
-		ArrayList<Couleur> couleursDisponible = new ArrayList<Couleur>();
-		couleursDisponible.add(Couleur.BLEU);
-		couleursDisponible.add(Couleur.JAUNE);
-		couleursDisponible.add(Couleur.ROUGE);
-		couleursDisponible.add(Couleur.VERT);
-		
-		for(int i = 0; i < nb; i++) {  // On cree le nombre de joueurs passer en paramtre de la fonction
+			Scanner sc = new Scanner(System.in);
+			String nomChoisi;
+			Couleur couleurChoisi;
+			ArrayList<Couleur> couleursDisponible = new ArrayList<Couleur>();
+			couleursDisponible.add(Couleur.BLEU);
+			couleursDisponible.add(Couleur.JAUNE);
+			couleursDisponible.add(Couleur.ROUGE);
+			couleursDisponible.add(Couleur.VERT);
 			
-			//Definition du nom du joueur
-			
-			System.out.println("Qu'elle est le nom du joueur "+(i+1));
-			nomChoisi = sc.nextLine();
-			
-			
-			/**
-			 * Definition de la couleur du joueur
-			 * rep : variable test de la reponse
-			 */
-			int rep = -1;
-			
-			
-			while(rep < 0 || rep > couleursDisponible.size()) { // Verification que l'entier rentrer est bien un numero de couleur proposé
+			for(int i = 0; i < nb; i++) {  // On cree le nombre de joueurs passer en paramtre de la fonction
 				
-				System.out.println("Choissiser une des couleurs suivantes : ");
-				for(int j = 0; j < couleursDisponible.size(); j++) {
-					System.out.println(j+" "+couleursDisponible.get(j).getNom());
+				//Definition du nom du joueur
+				
+				System.out.println("Qu'elle est le nom du joueur "+(i+1));
+				nomChoisi = sc.nextLine();
+				
+				
+				/**
+				 * Definition de la couleur du joueur
+				 * rep : variable test de la reponse
+				 */
+				int rep = -1;
+				
+				
+				while(rep < 0 || rep > couleursDisponible.size()) { // Verification que l'entier rentrer est bien un numero de couleur proposé
+					
+					System.out.println("Choissiser une des couleurs suivantes : ");
+					for(int j = 0; j < couleursDisponible.size(); j++) {
+						System.out.println(j+" "+couleursDisponible.get(j).getNom());
+					}
+					
+					
+					try {
+						rep = sc.nextInt();
+					}catch (InputMismatchException exception) { 
+					    System.out.println("Mauvaise entrée");
+					    sc.next();
+					    rep = -1;
+					}
 				}
 				
+				couleurChoisi = couleursDisponible.get(rep);
+				couleursDisponible.remove(rep);
 				
-				try {
-					rep = sc.nextInt();
-				}catch (InputMismatchException exception) { 
-				    System.out.println("Mauvaise entrée");
-				    sc.next();
-				    rep = -1;
-				}
+					
+				joueurs.add(new JoueurHumain(nomChoisi ,couleurChoisi));
+				sc.nextLine();// Vide le scanner 
 			}
 			
-			couleurChoisi = couleursDisponible.get(rep);
-			couleursDisponible.remove(rep);
+			sc.close();
 			
-				
-			joueurs.add(new JoueurHumain(nomChoisi ,couleurChoisi));
-			sc.nextLine();// Vide le scanner 
 		}
-		
-		sc.close();
-		
 	}
 	
 	public void initialiserPlateau() {
