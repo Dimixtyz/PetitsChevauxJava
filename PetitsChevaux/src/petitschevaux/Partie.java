@@ -106,6 +106,17 @@ public class Partie {
 				
 			}
 			
+			/* Initialisation cases de depart des joueurs */
+			int numCaseDepart = 0;
+			
+			for(Joueur j : joueurs) {
+				
+				j.setCaseDeDepart(plateau.getChemin().get(numCaseDepart));
+				
+				numCaseDepart += 14;
+			}
+			
+			
 		}
 	}
 	
