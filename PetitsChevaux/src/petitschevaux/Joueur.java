@@ -9,12 +9,20 @@ public abstract class Joueur {
 	private Case caseDeDepart;
 	private ArrayList<Pion> chevaux;
 	
-	
+	/**
+	 * Constructeur d'un joueur
+	 * @param nom nom du joueur
+	 * @param couleur couleur du joueur
+	 */
 	public Joueur(String nom, Couleur couleur){
 		this.nom = nom;
 		this.couleur = couleur;
 	}
 	
+	/**
+	 * Getter de la case de depart du joueur
+	 * @return retourne la case de depart du joueur
+	 */
 	public Case getCaseDeDepart() {
 		return caseDeDepart;
 	}
