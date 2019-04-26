@@ -88,6 +88,24 @@ public class Partie {
 			
 			sc.close();
 			
+			/* Initialisation des pions des joueurs */
+			ArrayList<Pion> pionsDesJoueurs = new ArrayList<Pion>();
+			String idPions = "";
+			
+			/*Pour chaque joueurs on vide la liste des pions et la remplit de 4 pions de leur couleur*/
+			for(Joueur j : joueurs) {
+				
+				pionsDesJoueurs.clear();
+				
+				for(int k = 0; k < 4; k++) {
+					idPions = j.getCouleur()+" "+(k+1);
+					pionsDesJoueurs.add(new Pion(idPions, j.getCouleur()));
+				}
+				
+				j.setChevaux(pionsDesJoueurs);
+				
+			}
+			
 		}
 	}
 	
@@ -139,10 +157,17 @@ public class Partie {
 		return de.nextInt(6) + 1;
 	}
 	
+	/**
+	 * Fonction qui permet de jouer un tour de la partie
+	 */
 	public void jouerUnTour() {
 		
 	}
 	
+	/**
+	 * Verifie si la partie est finie
+	 * @return Vrai si elle est finie, faux sinon
+	 */
 	public boolean estPartieTermine() {
 		
 		return false;//////////////////////////////////
