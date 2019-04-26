@@ -13,26 +13,30 @@ public class Partie {
 	private ArrayList<Joueur> joueurs;
 	
 	/**
-	 * Initialisation des variables
+	 * Initialisation des variables de la classe
 	 */
-	
 	public Partie() {
 		de = new Random();
 		plateau = new Plateau();
 		joueurs = new ArrayList<Joueur>();
 	}
 	
+	/**
+	 * Initialise les joueurs du jeu (remplit le tableau joueurs)
+	 * @param nb nombre de joueurs
+	 */
 	public void initialiserJoueurs(int nb) throws PasDeJoueursException { 
 		
-		/**
-		 * Definition des variables global de la fonction
-		 * sc : Scanner des entrées de l'utilisateur
-		 * couleurChoisi : Couleur selectionnée par l'utilisateur
-		 * couleursDisponible : ArrayList des couleurs disponibles à la selection
-		 */
+		/* Exception s'il n'y a aucun joueur passer en parametre */
 		if(nb == 0) {
 			throw new PasDeJoueursException();
 		}else {
+			
+			/*
+			 * Definition des variables global de la fonction
+			 * couleurChoisi : Couleur selectionnée par l'utilisateur
+			 * couleursDisponible : ArrayList des couleurs disponibles à la selection
+			 */
 		
 			Scanner sc = new Scanner(System.in);
 			String nomChoisi;
@@ -43,22 +47,20 @@ public class Partie {
 			couleursDisponible.add(Couleur.ROUGE);
 			couleursDisponible.add(Couleur.VERT);
 			
-			for(int i = 0; i < nb; i++) {  // On cree le nombre de joueurs passer en paramtre de la fonction
+			/* On cree le nombre de joueurs passer en paramtre de la fonction */
+			for(int i = 0; i < nb; i++) {  
 				
-				//Definition du nom du joueur
+				/*Definition du nom du joueur*/
 				
 				System.out.println("Qu'elle est le nom du joueur "+(i+1));
 				nomChoisi = sc.nextLine();
 				
 				
-				/**
-				 * Definition de la couleur du joueur
-				 * rep : variable test de la reponse
-				 */
+				/* Definition de la couleur du joueur */
 				int rep = -1;
 				
-				
-				while(rep < 0 || rep > couleursDisponible.size()) { // Verification que l'entier rentrer est bien un numero de couleur proposé
+				/* Verification que l'entier rentrer est bien un numero de couleur proposé */
+				while(rep < 0 || rep > couleursDisponible.size()) { 
 					
 					System.out.println("Choissiser une des couleurs suivantes : ");
 					for(int j = 0; j < couleursDisponible.size(); j++) {
@@ -80,7 +82,8 @@ public class Partie {
 				
 					
 				joueurs.add(new JoueurHumain(nomChoisi ,couleurChoisi));
-				sc.nextLine();// Vide le scanner 
+				/* Vide le scanner */
+				sc.nextLine();
 			}
 			
 			sc.close();
@@ -88,32 +91,27 @@ public class Partie {
 		}
 	}
 	
+	/**
+	 * Initialise le plateau de jeu (remplit les differents types de cases de l'objet Plateau)
+	 */
 	public void initialiserPlateau() {
 		
-		/**
-		 * Case Chemin
-		 */
-		
+		/* Case Chemin */
 		for(int i = 0; i<56; i++) {
 		plateau.addCaseChemin(new CaseDeChemin());
 		}
 		
-		/**
-		 * Cases Ecurie
-		 */
-		
+		/* Cases Ecurie */
 		plateau.addCaseEcuries(new CaseEcurie(Couleur.ROUGE));
 		plateau.addCaseEcuries(new CaseEcurie(Couleur.VERT));
 		plateau.addCaseEcuries(new CaseEcurie(Couleur.JAUNE));
 		plateau.addCaseEcuries(new CaseEcurie(Couleur.BLEU));
 		
-		/**
-		 * Cases Echelles
-		 * CE : Arraylist comportant les 6 cases d'une couleur
-		 * On cree 4 ArrayList, une pour chaque couleur
-		 */
+		/* Cases Echelles */ 
+		 
 		ArrayList<CaseDEchelle> CE = new ArrayList<CaseDEchelle>();
 		
+		/* On recrée 4 fois l'ArrayList, une fois pour chaque couleur */
 		for(int i = 0; i<4; i++) {
 			
 			CE.clear();
@@ -134,6 +132,9 @@ public class Partie {
 		
 	}
 	
+	/**
+	 * Retourne aléatoirement un chiffre entre 1 et 6
+	 */
 	private int lancerDe() {
 		return de.nextInt(6) + 1;
 	}
@@ -147,32 +148,43 @@ public class Partie {
 		return false;//////////////////////////////////
 	}
 	
+	/**
+	 * Retourne le joueur qui est en train de jouer
+	 */
 	public Joueur getJoueurCourrant() {
 		return joueurCourrant;
 	}
 	
+	/**
+	 * Definie le joueur qui va jouer
+	 * @param j un joueur
+	 */
 	public void setJoueurCourrant(Joueur j) {
 		this.joueurCourrant = j;
 	}
 	
+	/**
+	 * Retourne le plateau actuel
+	 */
 	public Plateau getPlateau() {
 		return plateau;
 	}
 	
+	/**
+	 * Retourne la liste des joueur de la partie
+	 */
 	public ArrayList<Joueur> getJoueurs(){
 		return joueurs;
 	}
 	
+	/**
+	 * Fonction qui retourne à leur ecurie les pions present sur une case
+	 * @param c case pour laquel les pions vont retourner à leur écurie
+	 */
 	private void mangerLesPions(Case c) {
 		
-		/**
-		 * Pour tous les pions p present sur la case c
-		 * on les ajoute a l'ecurie qui correspond à leur 
-		 * couleur et on les retire de la case c
-		 */
-		
 		for(Pion p : c.getChevaux()) {
-			
+			/*On ajoute le cheval à la case ecuries de sa couleur puis on le retire de la case*/
 			for(CaseEcurie ce : plateau.getEcuries()) {
 				if(p.getCouleur() == ce.getCouleur()) {
 					ce.ajouteCheval(p);
