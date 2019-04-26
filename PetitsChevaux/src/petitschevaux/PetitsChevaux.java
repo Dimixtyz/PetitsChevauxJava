@@ -35,9 +35,10 @@ public class PetitsChevaux {
 		try {
 			p.initialiserJoueurs(nombreDeJoueurs);
 		}catch(PasDeJoueursException e) {
-			System.out.println("Aucun joueurs");
+			System.out.println(e);
 		}
 		
 	}
+	
 	
 }

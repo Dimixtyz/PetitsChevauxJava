@@ -20,7 +20,7 @@ public class Case {
 	
 	public boolean peutPasser(Pion p) {
 		
-		return false; ////////////////////////////////////////////
+		return false;
 	}
 	
 	public boolean peutSArreter(Pion p) {
