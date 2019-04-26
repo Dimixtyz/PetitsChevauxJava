@@ -12,7 +12,7 @@ public class CaseDeChemin extends Case {
 	}
 	
 	/**
-	 * Verifie si un pion peut passer case
+	 * Verifie si un pion peut passer une case
 	 * @param p un pion
 	 * @return vrai (true) si le pion peut passer la case, faux (false) sinon.
 	 */
