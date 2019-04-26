@@ -10,16 +10,17 @@ public class ConflitDeCouleurException extends Exception{
 		
 	}
 	
-	ConflitDeCouleurException(Throwable t){
-		
+	ConflitDeCouleurException(Throwable cause) {
+	    super(cause);
 	}
 	
-	ConflitDeCouleurException(Throwable t, String s){
-		
+	ConflitDeCouleurException(Throwable cause,String message) {
+	    super(message, cause);
 	}
+
 	
-	ConflitDeCouleurException(Throwable t, String s, boolean b1, boolean b2){
-		
+	ConflitDeCouleurException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	    super(message, cause, enableSuppression, writableStackTrace);
 	}
 	
 }

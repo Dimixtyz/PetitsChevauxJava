@@ -10,16 +10,22 @@ public class PasDeJoueursException extends Exception{
 		super(message);
 	}
 	
-	PasDeJoueursException(Throwable t){
-		
+	PasDeJoueursException(Throwable cause) {
+	    super(cause);
 	}
 	
-	PasDeJoueursException(Throwable t, String s){
-		
+	PasDeJoueursException(Throwable cause,String message) {
+	    super(message, cause);
 	}
+
 	
-	PasDeJoueursException(Throwable t, String s, boolean b1, boolean b2){
-		
+	PasDeJoueursException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	    super(message, cause, enableSuppression, writableStackTrace);
 	}
-	
 }
+
+
+
+
+
+

@@ -3,23 +3,24 @@ package petitschevaux;
 public class CasePleineException extends Exception{
 	
 	CasePleineException(){
-		
+		System.out.println("Il y a deja un pion sur cette case");
 	}
-	
+
 	CasePleineException(String s){
-		
+		super(s);
 	}
 	
-	CasePleineException(Throwable t){
-		
+	CasePleineException(Throwable cause) {
+	    super(cause);
 	}
 	
-	CasePleineException(Throwable t, String s){
-		
+	CasePleineException(Throwable cause,String message) {
+	    super(message, cause);
 	}
+
 	
-	CasePleineException(Throwable t, String s, boolean b1, boolean b2){
-		
+	CasePleineException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	    super(message, cause, enableSuppression, writableStackTrace);
 	}
 	
 }
