@@ -1,6 +1,6 @@
 package petitschevaux;
 
-public class CaseColoree extends Case {
+public abstract class CaseColoree extends Case {
 
 	private Couleur couleur;
 	
@@ -12,14 +12,8 @@ public class CaseColoree extends Case {
 		return this.couleur;
 	}
 	
-	public boolean peutPasser(Pion p) {
+	public abstract boolean peutPasser(Pion p);
 	
-		return false; ////////////////////////////////
-	}
-	
-	public boolean peutSArreter(Pion p) {
-		
-		return false; ////////////////////////////////
-	}
+	public abstract boolean peutSArreter(Pion p);
 	
 }

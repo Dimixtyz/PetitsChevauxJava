@@ -2,7 +2,7 @@ package petitschevaux;
 
 import java.util.ArrayList;
 
-public class Case {
+public abstract class Case {
 	
 	private ArrayList<Pion> chevaux = new ArrayList<Pion>();
 	
@@ -18,15 +18,9 @@ public class Case {
 		chevaux.add(p);
 	}
 	
-	public boolean peutPasser(Pion p) {
-		
-		return false;
-	}
+	public abstract boolean peutPasser(Pion p);
 	
-	public boolean peutSArreter(Pion p) {
-		
-		return false; //////////////////////////////////////////////
-	}
+	public abstract boolean peutSArreter(Pion p);
 	
 	public void retirerCheval(Pion p) {
 		chevaux.remove(p);
