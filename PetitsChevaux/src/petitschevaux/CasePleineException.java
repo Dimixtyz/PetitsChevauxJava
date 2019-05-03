@@ -6,8 +6,8 @@ public class CasePleineException extends Exception{
 		System.out.println("Il y a deja un pion sur cette case");
 	}
 
-	CasePleineException(String s){
-		super(s);
+	CasePleineException(String message){
+		super(message);
 	}
 	
 	CasePleineException(Throwable cause) {

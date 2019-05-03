@@ -3,11 +3,11 @@ package petitschevaux;
 public class ConflitDeCouleurException extends Exception{
 	
 	ConflitDeCouleurException(){
-		
+		System.out.println("Conflit de couleur !");
 	}
 	
 	ConflitDeCouleurException(String s){
-		
+		super(s);
 	}
 	
 	ConflitDeCouleurException(Throwable cause) {

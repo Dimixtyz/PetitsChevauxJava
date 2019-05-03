@@ -12,6 +12,7 @@ public class Plateau {
 	private ArrayList<CaseEcurie> ecuries;
 	private ArrayList<CaseDeChemin> chemin;
 	
+	
 	/**
 	 * Initialisation des variables
 	 */
@@ -58,17 +59,20 @@ public class Plateau {
 	 */
 	
 	public void afficher() {
+	
 		
 		ArrayList<ArrayList<String>> MatricePlateau = new ArrayList<ArrayList<String>>();
 		
 		ArrayList<String> ligneAAjouter = new ArrayList<String>();
 		
 		for(int ligne = 0; ligne < 15; ligne ++) {
+			
 			if(ligne < 6 || ligne > 8) {
 				for(int ecurieJoueur2et3 = 0; ecurieJoueur2et3<6; ecurieJoueur2et3++) {
 					
 				}
 			}
+			
 		}
 		
 		
