@@ -38,6 +38,8 @@ public class PetitsChevaux {
 			System.out.println(e);
 		}
 		
+		p.getPlateau().afficher();
+		
 	}
 	
 	

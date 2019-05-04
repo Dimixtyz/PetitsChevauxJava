@@ -7,7 +7,7 @@ public abstract class Joueur {
 	private String nom;
 	private Couleur couleur;
 	private Case caseDeDepart;
-	private ArrayList<Pion> chevaux;
+	private ArrayList<Pion> chevaux = new ArrayList<Pion>();
 	
 	/**
 	 * Constructeur d'un joueur

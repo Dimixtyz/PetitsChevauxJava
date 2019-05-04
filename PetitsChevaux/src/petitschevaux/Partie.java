@@ -101,6 +101,7 @@ public class Partie {
 			
 			
 		}
+		plateau.setJoueurs(joueurs);/*On passe la liste des joueurs pour l'affichage*/
 	}
 	
 	/**

@@ -11,6 +11,7 @@ public class Plateau {
 	private ArrayList<ArrayList<CaseDEchelle>> echelles;
 	private ArrayList<CaseEcurie> ecuries;
 	private ArrayList<CaseDeChemin> chemin;
+	private ArrayList<Joueur> joueurs; /*Pouvoir voir la couleur du joueur pour l'affichage du plateau*/
 	
 	
 	/**
@@ -60,21 +61,83 @@ public class Plateau {
 	
 	public void afficher() {
 	
-		
-		ArrayList<ArrayList<String>> MatricePlateau = new ArrayList<ArrayList<String>>();
-		
-		ArrayList<String> ligneAAjouter = new ArrayList<String>();
+		/*Remplissage de la matrice a afficher*/
+		String[][] affPlateau = new String[15][15];
 		
 		for(int ligne = 0; ligne < 15; ligne ++) {
 			
-			if(ligne < 6 || ligne > 8) {
-				for(int ecurieJoueur2et3 = 0; ecurieJoueur2et3<6; ecurieJoueur2et3++) {
+			for(int colone = 0; colone < 15; colone ++) {
+				if(ligne < 6 || ligne > 8) {
+					
+					/*Ecurie 3*/
+					if(ligne < 6 && colone < 6) {
+						if(joueurs.size()>=3) {
+							affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+"0";
+						}
+						else {
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+					}
+					/*Ecurie 2*/
+					else if(ligne > 8 && colone < 6) {
+						if(joueurs.size()>=2) {
+							affPlateau[ligne][colone] = joueurs.get(1).getCouleur().getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+						else {
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+					}
+						
+					
+					/*Case au centre */
+					
+					
+				
+						
+					/*Ecurie 4*/
+					if(ligne < 6 && colone > 8) {
+						if(joueurs.size()>=4) {
+							affPlateau[ligne][colone]=joueurs.get(3).getCouleur().getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+						else {
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+					}
+					/*Ecurie 1*/
+					if(ligne > 8 && colone > 8) {
+						if(joueurs.size()>=1) {
+							affPlateau[ligne][colone]=joueurs.get(0).getCouleur().getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+						else {
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+						}
+					}
 					
 				}
+			
+				
+				else {
+					for(int i = 0; i < 15; i++ ) {
+						affPlateau[ligne][colone]="X";//test
+					}
+				}
+			}
+		}
+		
+		
+		/*Affichage*/
+		System.out.println("test 1");
+		for(int i = 0; i < 15; i++){
+			System.out.println();
+			
+			for(int j = 0; j < 15; j++ ) {
+				
+				System.out.print(affPlateau[i][j]);
+				
 			}
 			
 		}
-		
+		System.out.println("test 2");
 		
 		
 		
@@ -124,6 +187,10 @@ public class Plateau {
 		c.ajouteCheval(p);
 		
 		
+	}
+	
+	public void setJoueurs(ArrayList<Joueur> j){
+		this.joueurs = j;
 	}
 
 }
