@@ -67,55 +67,50 @@ public class Plateau {
 		for(int ligne = 0; ligne < 15; ligne ++) {
 			
 			for(int colone = 0; colone < 15; colone ++) {
-				if(ligne < 6 || ligne > 8) {
+				if((ligne < 6 || ligne > 8)&&(colone < 6 || colone > 8)) {
 					
 					/*Ecurie 3*/
 					if(ligne < 6 && colone < 6) {
 						if(joueurs.size()>=3) {
-							affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+"0";
+							affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
 						}
 					}
 					/*Ecurie 2*/
 					else if(ligne > 8 && colone < 6) {
 						if(joueurs.size()>=2) {
-							affPlateau[ligne][colone] = joueurs.get(1).getCouleur().getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone] = joueurs.get(1).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
 						}
 					}
-						
-					
-					/*Case au centre */
-					
-					
-				
+								
 						
 					/*Ecurie 4*/
 					if(ligne < 6 && colone > 8) {
 						if(joueurs.size()>=4) {
-							affPlateau[ligne][colone]=joueurs.get(3).getCouleur().getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=joueurs.get(3).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
 						}
 					}
 					/*Ecurie 1*/
 					if(ligne > 8 && colone > 8) {
 						if(joueurs.size()>=1) {
-							affPlateau[ligne][colone]=joueurs.get(0).getCouleur().getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=joueurs.get(0).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0"+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
 						}
 					}
 					
 				}
 			
-				
+				/*Ligne horizontale et verticales*/
 				else {
 					for(int i = 0; i < 15; i++ ) {
 						affPlateau[ligne][colone]="X";//test
