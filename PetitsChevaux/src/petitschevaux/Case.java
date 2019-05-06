@@ -26,7 +26,15 @@ public abstract class Case {
 	 * @param p le pion a ajouter
 	 */
 	public void ajouteCheval(Pion p) {
-		chevaux.add(p);
+		boolean deja = false;
+		
+		for(Pion x : chevaux) {
+			if(x == p)
+				deja = true;
+		}
+		
+		if(!deja)
+			chevaux.add(p);
 	}
 	
 	/**

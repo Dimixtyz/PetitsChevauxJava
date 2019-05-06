@@ -165,7 +165,25 @@ public class Partie {
 	 */
 	public boolean estPartieTermine() {
 		
-		return false;//////////////////////////////////
+		for(ArrayList<CaseDEchelle> listesCE : plateau.getEchelles()) {
+			boolean victoire = true;
+			
+			/*On regarde sur les 4 dernieres cases de l'echelle s il y a un pion*/
+			for(int i = 2; i<6; i++) {
+				/*S il n'y a pas de pion sur une des cases finales*/
+				if(listesCE.get(i).getChevaux().size() != 1) {
+					victoire = false;
+				}
+			}
+			
+			if(victoire) {
+				System.out.println("Victoire du "+listesCE.get(0).getCouleur().getNom());
+				return true;
+			}
+			
+		}
+		
+		return false;
 	}
 	
 	/**
