@@ -34,8 +34,8 @@ public class Partie {
 			
 			/*
 			 * Definition des variables global de la fonction
-			 * couleurChoisi : Couleur selectionnée par l'utilisateur
-			 * couleursDisponible : ArrayList des couleurs disponibles à la selection
+			 * couleurChoisi : Couleur selectionnï¿½e par l'utilisateur
+			 * couleursDisponible : ArrayList des couleurs disponibles ï¿½ la selection
 			 */
 		
 			Scanner sc = new Scanner(System.in);
@@ -52,15 +52,15 @@ public class Partie {
 				
 				/*Definition du nom du joueur*/
 				
-				System.out.println("Qu'elle est le nom du joueur "+(i+1));
+				System.out.println("Quel est le nom du joueur "+(i+1));
 				nomChoisi = sc.nextLine();
 				
 				
 				/* Definition de la couleur du joueur */
 				int rep = -1;
 				
-				/* Verification que l'entier rentrer est bien un numero de couleur proposé */
-				while(rep < 0 || rep > couleursDisponible.size()) { 
+				/* Verification que l'entier rentrer est bien un numero de couleur proposï¿½ */
+				while(rep < 0 || rep >= couleursDisponible.size()) { 
 					
 					System.out.println("Choissiser une des couleurs suivantes : ");
 					for(int j = 0; j < couleursDisponible.size(); j++) {
@@ -71,7 +71,7 @@ public class Partie {
 					try {
 						rep = sc.nextInt();
 					}catch (InputMismatchException exception) { 
-					    System.out.println("Mauvaise entrée");
+					    System.out.println("Mauvaise entrï¿½e");
 					    sc.next();
 					    rep = -1;
 					}
@@ -124,7 +124,7 @@ public class Partie {
 		 
 		ArrayList<CaseDEchelle> CE = new ArrayList<CaseDEchelle>();
 		
-		/* On recrée 4 fois l'ArrayList, une fois pour chaque couleur */
+		/* On recrï¿½e 4 fois l'ArrayList, une fois pour chaque couleur */
 		for(int i = 0; i<4; i++) {
 			
 			CE.clear();
@@ -146,7 +146,7 @@ public class Partie {
 	}
 	
 	/**
-	 * Retourne aléatoirement un chiffre entre 1 et 6
+	 * Retourne alï¿½atoirement un chiffre entre 1 et 6
 	 */
 	private int lancerDe() {
 		return de.nextInt(6) + 1;
@@ -216,13 +216,13 @@ public class Partie {
 	}
 	
 	/**
-	 * Fonction qui retourne à leur ecurie les pions present sur une case
-	 * @param c case pour laquel les pions vont retourner à leur écurie
+	 * Fonction qui retourne ï¿½ leur ecurie les pions present sur une case
+	 * @param c case pour laquel les pions vont retourner ï¿½ leur ï¿½curie
 	 */
 	private void mangerLesPions(Case c) {
 		
 		for(Pion p : c.getChevaux()) {
-			/*On ajoute le cheval à la case ecuries de sa couleur puis on le retire de la case*/
+			/*On ajoute le cheval ï¿½ la case ecuries de sa couleur puis on le retire de la case*/
 			for(CaseEcurie ce : plateau.getEcuries()) {
 				if(p.getCouleur() == ce.getCouleur()) {
 					ce.ajouteCheval(p);
