@@ -132,9 +132,53 @@ public class Plateau {
 			
 				/*Ligne horizontale et verticales*/
 				else {
-					for(int i = 0; i < 15; i++ ) {
-						affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";//test
+					Case laCase;/*Case pour s'implifier l'attribution des cases sur la matrice*/
+					Couleur laCouleur;/*couleur des cases*/
+					
+					/*Attribution des cases a la matrice*/
+					switch(colone) {
+						case 6:
+							if(ligne >= 0 && ligne <= 6)
+								laCase = chemin.get((40-ligne));
+							if(ligne >= 8 && ligne <= 14)
+								laCase = chemin.get((28-ligne));
+							break;
+							
+						case 7:
+							if(ligne == 0)
+								laCase = chemin.get(41);
+							if(ligne >= 1 && ligne <= 6)
+								laCase = echelles.get(3).get(ligne-1);
+							if(ligne >= 8 && ligne <= 13)
+								laCase = echelles.get(3).get(13-ligne);
+							if(ligne == 7)
+								laCase = null;
+							break;
+							
+						case 8:
+							if(ligne >= 0 && ligne <= 6)
+								laCase = chemin.get((42+ligne));
+							if(ligne >= 8 && ligne <= 14)
+								laCase = chemin.get((ligne-2));
+							break;
 					}
+					switch(ligne) {
+						
+					}
+						
+							
+			
+					
+					if(laCase.getChevaux().size()==1) {
+						affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+"\u265e\033[0m";/*Case occupe par 1 seul cheval*/
+					}
+					if(laCase.getChevaux().size()>1) {
+						affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+laCase.getChevaux().size()+"\u265e\033[0m";/*Case occupe par plusieurs chevaux*/
+					}
+					else {
+						affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";/*Case vide*/
+					}
+					
 				}
 			}
 		}
