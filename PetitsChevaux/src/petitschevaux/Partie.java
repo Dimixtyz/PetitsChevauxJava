@@ -226,9 +226,10 @@ public class Partie {
 			for(CaseEcurie ce : plateau.getEcuries()) {
 				if(p.getCouleur() == ce.getCouleur()) {
 					ce.ajouteCheval(p);
+					c.retirerCheval(p);
 				}
 			}
-			c.retirerCheval(p);
+			
 		}
 	}
 

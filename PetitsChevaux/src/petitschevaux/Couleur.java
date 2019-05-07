@@ -2,11 +2,11 @@ package petitschevaux;
 
 public enum Couleur {
 	
-	ROUGE ('R',"Rouge","\033[1;31m"),
-	JAUNE ('J',"Jaune","\033[01;33m"),
-	VERT ('V',"Vert","\033[1;32m"),
-	BLEU ('B',"Bleu","\033[34;01m"),
-	BLANC ('B',"Blanc","\033[00m");
+	ROUGE ('R',"Rouge","\033[1;41m"),
+	JAUNE ('J',"Jaune","\033[01;43m"),
+	VERT ('V',"Vert","\033[1;42m"),
+	BLEU ('B',"Bleu","\033[1;44m"),
+	BLANC ('B',"Blanc","\033[40m");
 	   
 	private char symbol;
 	private String nom;

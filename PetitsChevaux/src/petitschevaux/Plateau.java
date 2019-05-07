@@ -72,19 +72,29 @@ public class Plateau {
 					/*Ecurie 3*/
 					if(ligne < 6 && colone < 6) {
 						if(joueurs.size()>=3) {
-							affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
+							if(ligne == 3 && colone == 3) {
+								affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+ecuries.get(2).getChevaux().size()+"\u265e\033[0m";
+							}
+							else {	
+								affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+"  "+Couleur.BLANC.getCCode();
+							}
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
 						}
 					}
 					/*Ecurie 2*/
 					else if(ligne > 8 && colone < 6) {
 						if(joueurs.size()>=2) {
-							affPlateau[ligne][colone] = joueurs.get(1).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
+							if(ligne == 11 && colone == 3) {
+								affPlateau[ligne][colone]=joueurs.get(1).getCouleur().getCCode()+ecuries.get(1).getChevaux().size()+"\u265e\033[0m";
+							}
+							else {
+								affPlateau[ligne][colone] = joueurs.get(1).getCouleur().getCCode()+"  "+Couleur.BLANC.getCCode();
+							}
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
 						}
 					}
 								
@@ -92,19 +102,29 @@ public class Plateau {
 					/*Ecurie 4*/
 					if(ligne < 6 && colone > 8) {
 						if(joueurs.size()>=4) {
-							affPlateau[ligne][colone]=joueurs.get(3).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
+							if(ligne == 3 && colone == 11) {
+								affPlateau[ligne][colone]=joueurs.get(3).getCouleur().getCCode()+ecuries.get(3).getChevaux().size()+"\u265e\033[0m";
+							}
+							else {
+								affPlateau[ligne][colone]=joueurs.get(3).getCouleur().getCCode()+"  "+Couleur.BLANC.getCCode();
+							}
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
 						}
 					}
 					/*Ecurie 1*/
 					if(ligne > 8 && colone > 8) {
 						if(joueurs.size()>=1) {
-							affPlateau[ligne][colone]=joueurs.get(0).getCouleur().getCCode()+"██"+Couleur.BLANC.getCCode();
+							if(ligne == 11 && colone == 11) {
+								affPlateau[ligne][colone]=joueurs.get(0).getCouleur().getCCode()+ecuries.get(0).getChevaux().size()+"\u265e\033[0m";
+							}
+							else {
+								affPlateau[ligne][colone]=joueurs.get(0).getCouleur().getCCode()+"  "+Couleur.BLANC.getCCode();
+							}
 						}
 						else {
-							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"0";
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
 						}
 					}
 					
@@ -113,7 +133,7 @@ public class Plateau {
 				/*Ligne horizontale et verticales*/
 				else {
 					for(int i = 0; i < 15; i++ ) {
-						affPlateau[ligne][colone]="X";//test
+						affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";//test
 					}
 				}
 			}
@@ -121,7 +141,7 @@ public class Plateau {
 		
 		
 		/*Affichage*/
-		System.out.println("test 1");
+	
 		for(int i = 0; i < 15; i++){
 			System.out.println();
 			
@@ -132,7 +152,7 @@ public class Plateau {
 			}
 			
 		}
-		System.out.println("test 2");
+		
 		
 		
 		
