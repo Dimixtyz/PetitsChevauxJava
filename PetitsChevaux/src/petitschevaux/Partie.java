@@ -124,10 +124,10 @@ public class Partie {
 		 
 		ArrayList<CaseDEchelle> CE = new ArrayList<CaseDEchelle>();
 		
-		/* On recr�e 4 fois l'ArrayList, une fois pour chaque couleur */
+		/* On recree 4 fois l'ArrayList, une fois pour chaque couleur */
 		for(int i = 0; i<4; i++) {
 			
-			CE.clear();
+			CE = new ArrayList<CaseDEchelle>();
 			
 			for(int j = 0; j<6; j++) {
 				if(i==0)
@@ -139,6 +139,7 @@ public class Partie {
 				if(i==3)
 					CE.add(new CaseDEchelle(Couleur.BLEU));
 			}
+			
 			
 			plateau.addCaseEchelles(CE);
 		}

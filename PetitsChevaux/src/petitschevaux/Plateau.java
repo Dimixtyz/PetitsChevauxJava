@@ -132,7 +132,7 @@ public class Plateau {
 			
 				/*Ligne horizontale et verticales*/
 				else {
-					Case laCase;/*Case pour s'implifier l'attribution des cases sur la matrice*/
+					Case laCase = null;/*Case pour s'implifier l'attribution des cases sur la matrice*/
 					Couleur laCouleur;/*couleur des cases*/
 					
 					/*Attribution des cases a la matrice*/
@@ -150,9 +150,11 @@ public class Plateau {
 							if(ligne >= 1 && ligne <= 6)
 								laCase = echelles.get(3).get(ligne-1);
 							if(ligne >= 8 && ligne <= 13)
-								laCase = echelles.get(3).get(13-ligne);
+								laCase = echelles.get(1).get(13-ligne);
 							if(ligne == 7)
 								laCase = null;
+							if(ligne == 14)
+								laCase = chemin.get(13);
 							break;
 							
 						case 8:
@@ -163,20 +165,54 @@ public class Plateau {
 							break;
 					}
 					switch(ligne) {
+					
+					case 6:
+						if(colone >= 0 && colone <= 6)
+							laCase = chemin.get(28+colone);
+						if(colone >= 8 && colone <= 14)
+							laCase = chemin.get(40+colone);
+						break;
+						
+					case 7:
+						if(colone == 0)
+							laCase = chemin.get(27);
+						if(colone >= 1 && colone <= 6)
+							laCase = echelles.get(2).get(colone-1);
+						if(colone >= 8 && colone <= 13)
+							laCase = echelles.get(0).get(13-colone);
+						if(colone == 7)
+							laCase = null;
+						if(colone == 14)
+							laCase = chemin.get(55);
+						break;
+						
+					case 8:
+						if(colone >= 0 && colone <= 6)
+							laCase = chemin.get(26-colone);
+						if(colone >= 8 && colone <= 14)
+							laCase = chemin.get(14-colone);
+						break;
 						
 					}
 						
 							
 			
-					
-					if(laCase.getChevaux().size()==1) {
-						affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+"\u265e\033[0m";/*Case occupe par 1 seul cheval*/
+					if(laCase != null) {
+						if(laCase.getChevaux().size()==1) {
+							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+"\u265e\033[0m";/*Case occupe par 1 seul cheval*/
+						}
+						else if(laCase.getChevaux().size()>1) {
+							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+laCase.getChevaux().size()+"\u265e\033[0m";/*Case occupe par plusieurs chevaux*/
+						}
+						else if(laCase instanceof CaseDEchelle) {
+							affPlateau[ligne][colone]=((CaseDEchelle) laCase).getCouleur().getCCode()+echelles.get(1).indexOf(laCase)+" "+Couleur.BLANC.getCCode();
+						}
+						else {
+							affPlateau[ligne][colone]=Couleur.BLANC.getCCodeSec()+"  "+Couleur.BLANC.getCCode();/*Case vide*/
+						}
 					}
-					if(laCase.getChevaux().size()>1) {
-						affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+laCase.getChevaux().size()+"\u265e\033[0m";/*Case occupe par plusieurs chevaux*/
-					}
-					else {
-						affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";/*Case vide*/
+					else if(laCase == null) {
+						affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
 					}
 					
 				}

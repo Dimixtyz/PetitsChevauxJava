@@ -2,25 +2,27 @@ package petitschevaux;
 
 public enum Couleur {
 	
-	ROUGE ('R',"Rouge","\033[1;41m"),
-	JAUNE ('J',"Jaune","\033[01;43m"),
-	VERT ('V',"Vert","\033[1;42m"),
-	BLEU ('B',"Bleu","\033[1;44m"),
-	BLANC ('B',"Blanc","\033[40m");
+	ROUGE ('R',"Rouge","\033[1;41m",""),
+	JAUNE ('J',"Jaune","\033[01;43m",""),
+	VERT ('V',"Vert","\033[1;42m",""),
+	BLEU ('B',"Bleu","\033[1;44m",""),
+	BLANC ('B',"Blanc","\033[40m","\033[47m");
 	   
 	private char symbol;
 	private String nom;
 	private String codeCouleur;
+	private String codeCouleurSecondaire;
 	 
 	/**
 	 * Constructeur de couleur
 	 * @param symbol premiere lettre de la couleur
 	 * @param nom Nom complet de la couleur
 	 */
-	Couleur(char symbol, String nom, String cd){
+	Couleur(char symbol, String nom, String cd, String cdSec){
 	  this.symbol = symbol;
 	  this.nom = nom;
 	  this.codeCouleur = cd;
+	  this.codeCouleurSecondaire = cdSec;
 	}
 	  
 	/**
@@ -41,5 +43,9 @@ public enum Couleur {
 	
 	public String getCCode() {
 		return this.codeCouleur;
+	}
+	
+	public String getCCodeSec() {
+		return this.codeCouleurSecondaire;
 	}
 }

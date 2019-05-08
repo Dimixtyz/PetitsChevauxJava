@@ -1,5 +1,6 @@
 package petitschevaux;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class PetitsChevaux {
 		p.initialiserPlateau();
 		
 		/*
-		 * Demande à l'utilisateur du nombre de joueurs
+		 * Demande ï¿½ l'utilisateur du nombre de joueurs
 		 * Puis Initialisation des joueurs
 		 */
 		int nombreDeJoueurs;
@@ -39,6 +40,12 @@ public class PetitsChevaux {
 		}
 		
 		p.getPlateau().afficher();
+		
+		for(ArrayList<CaseDEchelle> ce: p.getPlateau().getEchelles()) {
+			for(CaseDEchelle CEH : ce) {
+				System.out.println(CEH.getCouleur().getNom());
+			}
+		}
 		
 	}
 	
