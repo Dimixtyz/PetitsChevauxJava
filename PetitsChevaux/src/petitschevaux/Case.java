@@ -53,8 +53,8 @@ public abstract class Case {
 	 */
 	public void retirerCheval(Pion p) {
 		/*Verifie que le pion est bien present sur la case */
-		for(Pion x : chevaux) {
-			if(x == p)
+		for(int i = 0; i < chevaux.size(); i++) {
+			if(chevaux.get(i) == p)
 				chevaux.remove(p);
 		}
 		

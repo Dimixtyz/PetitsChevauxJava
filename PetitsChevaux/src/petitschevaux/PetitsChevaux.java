@@ -42,6 +42,10 @@ public class PetitsChevaux {
 		
 		p.getPlateau().afficher();
 		
+		p.getPlateau().deplacerPionA(p.getJoueurs().get(0).getChevaux().get(0), p.getPlateau().getChemin().get(0));
+		p.getPlateau().deplacerPionA(p.getJoueurs().get(0).getChevaux().get(1), p.getPlateau().getChemin().get(0));
+		
+		p.getPlateau().afficher();
 		
 	}
 	
