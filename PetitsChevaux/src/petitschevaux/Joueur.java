@@ -17,10 +17,12 @@ public abstract class Joueur {
 	public Joueur(String nom, Couleur couleur){
 		this.nom = nom;
 		this.couleur = couleur;
+		
 		for(int k = 0; k < 4; k++) {
 			String idPions = couleur.getNom()+" "+(k+1);
 			chevaux.add(new Pion(idPions, couleur));
 		}
+		
 	}
 	
 	/**

@@ -148,6 +148,15 @@ public class Partie {
 			numCaseDepart += 14;
 		}
 		
+		/*Initialisation des pions du joueur sur le plateau*/
+		for(int i = 0; i < joueurs.size(); i++) {
+			
+			for(Pion p : joueurs.get(i).getChevaux()) {
+				plateau.getEcuries().get(i).ajouteCheval(p);
+			}
+			
+		}
+		
 	}
 	
 	/**
