@@ -205,7 +205,21 @@ public class Plateau {
 							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+laCase.getChevaux().size()+"\u265e\033[0m";/*Case occupe par plusieurs chevaux*/
 						}
 						else if(laCase instanceof CaseDEchelle) {
-							affPlateau[ligne][colone]=((CaseDEchelle) laCase).getCouleur().getCCode()+echelles.get(1).indexOf(laCase)+" "+Couleur.BLANC.getCCode();
+							affPlateau[ligne][colone]=((CaseDEchelle) laCase).getCouleur().getCCode();
+							
+							int numEchelle = 0;
+							for(int numC = 0; numC < echelles.size(); numC++) {
+								if(echelles.get(numC).get(0).getCouleur() == ((CaseDEchelle) laCase).getCouleur()){
+									numEchelle = numC;
+								}
+							}
+							if(echelles.get(numEchelle).get(0).getCouleur() != Couleur.BLANC){
+								affPlateau[ligne][colone] += (echelles.get(numEchelle).indexOf(laCase)+1) + " "+Couleur.BLANC.getCCode();
+							}
+							else {
+								affPlateau[ligne][colone] += "  "+Couleur.BLANC.getCCode();
+							}
+							
 						}
 						else {
 							affPlateau[ligne][colone]=Couleur.BLANC.getCCodeSec()+"  "+Couleur.BLANC.getCCode();/*Case vide*/

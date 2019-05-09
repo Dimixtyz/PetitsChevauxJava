@@ -89,17 +89,6 @@ public class Partie {
 			sc.close();
 			
 			
-			/* Initialisation cases de depart des joueurs */
-			int numCaseDepart = 0;
-			
-			for(Joueur j : joueurs) {
-				
-				j.setCaseDeDepart(plateau.getChemin().get(numCaseDepart));
-				
-				numCaseDepart += 14;
-			}
-			
-			
 		}
 		plateau.setJoueurs(joueurs);/*On passe la liste des joueurs pour l'affichage*/
 	}
@@ -115,33 +104,48 @@ public class Partie {
 		}
 		
 		/* Cases Ecurie */
-		plateau.addCaseEcuries(new CaseEcurie(Couleur.ROUGE));
-		plateau.addCaseEcuries(new CaseEcurie(Couleur.VERT));
-		plateau.addCaseEcuries(new CaseEcurie(Couleur.JAUNE));
-		plateau.addCaseEcuries(new CaseEcurie(Couleur.BLEU));
+		
+		for(int i = 0; i< 4; i++) {
+			
+			if(i< joueurs.size()) {
+				plateau.addCaseEcuries(new CaseEcurie(joueurs.get(i).getCouleur()));
+			}
+			else
+				plateau.addCaseEcuries(new CaseEcurie(Couleur.BLANC));
+			
+		}
 		
 		/* Cases Echelles */ 
 		 
 		ArrayList<CaseDEchelle> CE = new ArrayList<CaseDEchelle>();
 		
 		/* On recree 4 fois l'ArrayList, une fois pour chaque couleur */
-		for(int i = 0; i<4; i++) {
+		for(int i = 0; i< 4; i++) {
 			
 			CE = new ArrayList<CaseDEchelle>();
 			
-			for(int j = 0; j<6; j++) {
-				if(i==0)
-					CE.add(new CaseDEchelle(Couleur.ROUGE));
-				if(i==1)
-					CE.add(new CaseDEchelle(Couleur.VERT));
-				if(i==2)
-					CE.add(new CaseDEchelle(Couleur.JAUNE));
-				if(i==3)
-					CE.add(new CaseDEchelle(Couleur.BLEU));
+			if(i< joueurs.size()) {
+				for(int j = 0; j<6; j++) {
+					CE.add(new CaseDEchelle(joueurs.get(i).getCouleur()));
+				}
+			}
+			else {
+				for(int j = 0; j<6; j++) {
+					CE.add(new CaseDEchelle(Couleur.BLANC));
+				}
 			}
 			
-			
 			plateau.addCaseEchelles(CE);
+		}
+		
+		/* Initialisation cases de depart des joueurs */
+		int numCaseDepart = 0;
+		
+		for(Joueur j : joueurs) {
+			
+			j.setCaseDeDepart(plateau.getChemin().get(numCaseDepart));
+			
+			numCaseDepart += 14;
 		}
 		
 	}

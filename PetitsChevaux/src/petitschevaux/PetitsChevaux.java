@@ -14,8 +14,7 @@ public class PetitsChevaux {
 		
 		
 		Partie p = new Partie();
-		p.initialiserPlateau();
-		
+	
 		/*
 		 * Demande � l'utilisateur du nombre de joueurs
 		 * Puis Initialisation des joueurs
@@ -39,13 +38,10 @@ public class PetitsChevaux {
 			System.out.println(e);
 		}
 		
+		p.initialiserPlateau();
+		
 		p.getPlateau().afficher();
 		
-		for(ArrayList<CaseDEchelle> ce: p.getPlateau().getEchelles()) {
-			for(CaseDEchelle CEH : ce) {
-				System.out.println(CEH.getCouleur().getNom());
-			}
-		}
 		
 	}
 	
