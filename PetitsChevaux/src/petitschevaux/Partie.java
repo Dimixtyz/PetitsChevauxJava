@@ -160,7 +160,7 @@ public class Partie {
 	}
 	
 	/**
-	 * Retourne al�atoirement un chiffre entre 1 et 6
+	 * Retourne aleatoirement un chiffre entre 1 et 6
 	 */
 	private int lancerDe() {
 		return de.nextInt(6) + 1;
@@ -170,6 +170,77 @@ public class Partie {
 	 * Fonction qui permet de jouer un tour de la partie
 	 */
 	public void jouerUnTour() {
+		
+		int resultatDe = lancerDe();
+		
+		Pion pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
+		
+		if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
+			
+			Case caseDArriver = null;
+			
+			/*Si le pion est a l ecurie*/
+			for(Case cases : plateau.getEcuries()) {
+				if(cases.getChevaux().indexOf(pionABouger) != -1)
+					caseDArriver = joueurCourrant.getCaseDeDepart();
+			}
+			
+			/*Si le pion est sur le plateau*/
+			for(Case cases : plateau.getChemin()) {
+				if(cases.getChevaux().indexOf(pionABouger) != -1)
+					caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
+			}
+			
+			/*Si le pion est sur une echelle*/
+			for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
+				for(Case cases : ech) {
+					if(cases.getChevaux().indexOf(pionABouger) != -1)
+						caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+resultatDe));
+				}
+			}
+			
+			
+			plateau.deplacerPionA(pionABouger, caseDArriver);
+		}
+		
+		/*Si le de a fait un 6 le joueur rejoue*/
+		if(resultatDe == 6) {
+			
+			resultatDe = lancerDe();
+			
+			pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
+			
+			if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
+				
+				Case caseDArriver = null;
+				
+				/*Si le pion est a l ecurie*/
+				for(Case cases : plateau.getEcuries()) {
+					if(cases.getChevaux().indexOf(pionABouger) != -1)
+						caseDArriver = joueurCourrant.getCaseDeDepart();
+				}
+				
+				/*Si le pion est sur le plateau*/
+				for(Case cases : plateau.getChemin()) {
+					if(cases.getChevaux().indexOf(pionABouger) != -1)
+						caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
+				}
+				
+				/*Si le pion est sur une echelle*/
+				for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
+					for(Case cases : ech) {
+						if(cases.getChevaux().indexOf(pionABouger) != -1)
+							caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+resultatDe));
+					}
+				}
+				
+				
+				plateau.deplacerPionA(pionABouger, caseDArriver);
+			}
+		}
+		
+		setJoueurCourrant(joueurCourrant);
+		
 		
 	}
 	
@@ -208,11 +279,13 @@ public class Partie {
 	}
 	
 	/**
-	 * Definie le joueur qui va jouer
-	 * @param j un joueur
+	 * Definie le joueur suivant qui va jouer
+	 * @param joueurActuel le joueur qui vient de joueur
 	 */
-	public void setJoueurCourrant(Joueur j) {
-		this.joueurCourrant = j;
+	public void setJoueurCourrant(Joueur joueurActuel) {
+		int numJ = joueurs.indexOf(joueurActuel);
+		numJ = (numJ+1)%4;
+		this.joueurCourrant = joueurs.get(numJ);
 	}
 	
 	/**
@@ -230,7 +303,7 @@ public class Partie {
 	}
 	
 	/**
-	 * Fonction qui retourne � leur ecurie les pions present sur une case
+	 * Fonction qui retourne a leur ecurie les pions present sur une case
 	 * @param c case pour laquel les pions vont retourner � leur �curie
 	 */
 	private void mangerLesPions(Case c) {
