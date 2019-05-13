@@ -93,14 +93,19 @@ public class JoueurHumain extends Joueur {
 		/*Pion sur l'echelle*/
 		for(CaseDEchelle CE : p.getEchelles().get(indiceDeLEchelle)) {
 			
-			if(CE.getCouleur() == this.getCouleur()) {
+			for(Pion pions : CE.getChevaux()){
 				
-				for(Pion pions : CE.getChevaux()){
-					if(valeurDe == 6) {
-						pionBougable.add(pions);
-					}
+				if(valeurDe == p.getEchelles().get(indiceDeLEchelle).indexOf(CE)+1) {
+					
+					/*On verifie que l'indice ne depasse pas la taille de l'arraylist*/
+					if(p.getEchelles().get(indiceDeLEchelle).indexOf(CE)+1 <= 5) {
+						if(p.getEchelles().get(indiceDeLEchelle).get(p.getEchelles().get(indiceDeLEchelle).indexOf(CE)+1).peutSArreter(pions))
+							pionBougable.add(pions);
+					}	
+					
 				}
 			}
+			
 		}
 		
 		return null;////////////////////
