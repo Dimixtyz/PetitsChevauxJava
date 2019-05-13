@@ -23,5 +23,13 @@ public class Pion {
 		return this.couleur;
 	}
 	
+	/**
+	 * Getter de l'id du pion
+	 * @return l'id du pion
+	 */
+	public String getId() {
+		return this.id;
+	}
+	
 
 }

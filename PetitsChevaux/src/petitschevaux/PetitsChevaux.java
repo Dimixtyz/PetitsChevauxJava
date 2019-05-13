@@ -47,6 +47,8 @@ public class PetitsChevaux {
 		
 		p.getPlateau().afficher();
 		
+		p.getJoueurs().get(0).choisirPion(6, p.getPlateau());
+		
 	}
 	
 	

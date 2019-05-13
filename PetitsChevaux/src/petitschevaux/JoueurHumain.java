@@ -108,6 +108,31 @@ public class JoueurHumain extends Joueur {
 			
 		}
 		
+		for(Pion pion :pionBougable) {
+			
+			String message = "Le pion "+pion.getId()+" sur la case ";
+			
+			for(CaseEcurie CE : p.getEcuries()) {
+				if(CE.getChevaux().indexOf(pion) != -1) {
+					message += "ecurie de sa couleur";
+				}
+			}
+			
+			for(CaseDeChemin CDC : p.getChemin()) {
+				if(CDC.getChevaux().indexOf(pion) != -1) {
+					message += "de chemin "+CDC.getChevaux().indexOf(pion);
+				}
+			}
+			
+			for(CaseDEchelle CDE : p.getEchelles().get(indiceDeLEchelle)) {
+				if(CDE.getChevaux().indexOf(pion) != -1) {
+					message += "d'echelle "+CDE.getChevaux().indexOf(pion)+1;
+				}
+			}
+			
+			System.out.println(message);
+		}
+		
 		return null;////////////////////
 	}
 	

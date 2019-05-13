@@ -175,6 +175,14 @@ public class Partie {
 		
 		Pion pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
 		
+		/*Recherche de l'echelle */
+		int indiceDeLEchelle = 0;
+		for(int j = 0; j<plateau.getEchelles().size(); j++) {
+			if(plateau.getEchelles().get(j).get(0).getCouleur() == joueurCourrant.getCouleur())
+				indiceDeLEchelle = j;
+		}
+		
+		
 		if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
 			
 			Case caseDArriver = null;
@@ -187,8 +195,23 @@ public class Partie {
 			
 			/*Si le pion est sur le plateau*/
 			for(Case cases : plateau.getChemin()) {
-				if(cases.getChevaux().indexOf(pionABouger) != -1)
-					caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
+				if(cases.getChevaux().indexOf(pionABouger) != -1) {
+					
+					/*Cas exceptionel echelle joueur 1*/
+					if(cases.getChevaux().indexOf(pionABouger) == 55 && joueurCourrant == joueurs.get(0)) {
+						caseDArriver = plateau.getEchelles().get(0).get(0);
+					}
+					
+					/*Monter des echelle joueur 2/3/4*/
+					if(cases.getChevaux().indexOf(pionABouger) == cases.getChevaux().indexOf(joueurCourrant.getCaseDeDepart())-1)
+						caseDArriver = plateau.getEchelles().get(indiceDeLEchelle).get(0);
+					
+					/*Si il n y a pas de monter sur les echelles*/
+					else {
+						caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
+					}
+			
+				}
 			}
 			
 			/*Si le pion est sur une echelle*/
