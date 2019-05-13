@@ -195,7 +195,7 @@ public class Partie {
 			for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
 				for(Case cases : ech) {
 					if(cases.getChevaux().indexOf(pionABouger) != -1)
-						caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+resultatDe));
+						caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+1));
 				}
 			}
 			
@@ -230,7 +230,7 @@ public class Partie {
 				for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
 					for(Case cases : ech) {
 						if(cases.getChevaux().indexOf(pionABouger) != -1)
-							caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+resultatDe));
+							caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+1));
 					}
 				}
 				
