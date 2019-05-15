@@ -24,7 +24,7 @@ public class CaseDEchelle extends CaseColoree {
 	 */
 	public boolean peutSArreter(Pion p) {
 		/* S'il n'y a aucun pion le pion peut s'arreter sur la case */
-		if(this.getChevaux() == null)
+		if(this.getChevaux().size() == 0)
 			return true;
 		else
 			return false;

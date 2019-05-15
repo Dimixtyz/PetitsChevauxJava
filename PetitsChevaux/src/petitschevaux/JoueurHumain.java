@@ -19,7 +19,7 @@ public class JoueurHumain extends Joueur {
 		
 		ArrayList<Pion> pionBougable = new ArrayList<Pion>();
 		
-		/*Recherche de l'echelle */
+		/*Recherche de l'indice de l echelle dans l'ArrayList echelles*/
 		int indiceDeLEchelle = 0;
 		for(int j = 0; j<p.getEchelles().size(); j++) {
 			if(p.getEchelles().get(j).get(0).getCouleur() == this.getCouleur())
@@ -48,36 +48,40 @@ public class JoueurHumain extends Joueur {
 					int numCaseTest;
 					
 					/*Si le pion se trouve au dernier indice de l'arraylist*/
-					if(p.getChemin().indexOf(CDC) == 54) {
+					if(p.getChemin().indexOf(CDC) == 55) {
 						/*Si c'est un pion de l'ecurie 0*/
-						if((valeurDe != 1 && this.getCouleur() == p.getEcuries().get(0).getCouleur()) || !p.getEchelles().get(0).get(0).peutSArreter(pions)) {
+						if((valeurDe != 1 && this.getCouleur() == p.getEcuries().get(0).getCouleur()) || (!p.getEchelles().get(0).get(0).peutSArreter(pions)&& this.getCouleur() == p.getEcuries().get(0).getCouleur())) {
 							bougable = false;
+							System.out.println("########### PION ECHELLE 0 PEUT PAS MONTER ECHELLE ############");
 						}
 					}
 					
-					for(int i = 0; i < valeurDe; i++) {
+					for(int i = 1; i <= valeurDe; i++) {
 						/*Definition de la case a tester*/
 						numCaseTest = p.getChemin().indexOf(CDC)+i;
 						if(p.getChemin().indexOf(CDC)+i > 54) {
 							numCaseTest = p.getChemin().indexOf(CDC)+i-54;
 						}
 						
-						/*On verifie si le point sur la derniere case de son chemin peut passer*/
+						/*On verifie si le pion est sur la derniere case de son chemin et peut passer*/
 						if(p.getChemin().get(numCaseTest) == this.getCaseDeDepart()) {
 							
 							if(valeurDe != 1 || !p.getEchelles().get(indiceDeLEchelle).get(0).peutSArreter(pions)) {
 								bougable = false;
+								System.out.println("########### DERNIERE CASE MAIS PAS 1 ############");
 								break;
 							}
 						}
 						/*On verifie que le pion peut passer sur les case entre sa case et la case d'arriver*/
-						else if(!p.getChemin().get(numCaseTest).peutPasser(pions) && i != valeurDe-1) {
+						else if(!p.getChemin().get(numCaseTest).peutPasser(pions) && i != valeurDe) {
 							bougable = false;
+							System.out.println("########### BLOQUE PAR (!PASSER) ############");
 							break;
 						}
 						/*On verifie qu'il peut s'arreter sur la case d'arriver*/
 						else if(i == valeurDe-1 && !p.getChemin().get(numCaseTest).peutSArreter(pions)) {
 							bougable = false;
+							System.out.println("########### PAS POSSIBLE DE S ARRETER DERNIERE CASE ############");
 							break;
 						}
 					}
@@ -94,8 +98,8 @@ public class JoueurHumain extends Joueur {
 		for(CaseDEchelle CE : p.getEchelles().get(indiceDeLEchelle)) {
 			
 			for(Pion pions : CE.getChevaux()){
-				
-				if(valeurDe == p.getEchelles().get(indiceDeLEchelle).indexOf(CE)+1) {
+				/*Si le pion est sur la case 1( indice 0) il doit faire un 2 donc le de doit etre egale a l'indice de la case actuel + 2*/
+				if(valeurDe == p.getEchelles().get(indiceDeLEchelle).indexOf(CE)+2) {
 					
 					/*On verifie que l'indice ne depasse pas la taille de l'arraylist*/
 					if(p.getEchelles().get(indiceDeLEchelle).indexOf(CE)+1 <= 5) {
@@ -107,6 +111,8 @@ public class JoueurHumain extends Joueur {
 			}
 			
 		}
+		
+		System.out.println();
 		
 		for(Pion pion :pionBougable) {
 			
@@ -120,13 +126,13 @@ public class JoueurHumain extends Joueur {
 			
 			for(CaseDeChemin CDC : p.getChemin()) {
 				if(CDC.getChevaux().indexOf(pion) != -1) {
-					message += "de chemin "+CDC.getChevaux().indexOf(pion);
+					message += "de chemin "+p.getChemin().indexOf(CDC);
 				}
 			}
 			
 			for(CaseDEchelle CDE : p.getEchelles().get(indiceDeLEchelle)) {
 				if(CDE.getChevaux().indexOf(pion) != -1) {
-					message += "d'echelle "+CDE.getChevaux().indexOf(pion)+1;
+					message += "d'echelle "+p.getEchelles().get(indiceDeLEchelle).indexOf(CDE);
 				}
 			}
 			
