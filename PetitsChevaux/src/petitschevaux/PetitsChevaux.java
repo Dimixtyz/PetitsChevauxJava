@@ -40,16 +40,23 @@ public class PetitsChevaux {
 		
 		p.initialiserPlateau();
 		
+		/*p.getPlateau().afficher();
+		
+		p.getPlateau().deplacerPionA(p.getJoueurs().get(0).getChevaux().get(0), p.getPlateau().getChemin().get(0));
+		p.getPlateau().deplacerPionA(p.getJoueurs().get(0).getChevaux().get(1), p.getPlateau().getChemin().get(0));
+		
+		//p.getPlateau().deplacerPionA(p.getJoueurs().get(1).getChevaux().get(0), p.getPlateau().getChemin().get(2));
+		
 		p.getPlateau().afficher();
 		
-		p.getPlateau().deplacerPionA(p.getJoueurs().get(0).getChevaux().get(0), p.getPlateau().getEchelles().get(0).get(0));
-		p.getPlateau().deplacerPionA(p.getJoueurs().get(0).getChevaux().get(1), p.getPlateau().getChemin().get(55));
+		p.getJoueurs().get(0).choisirPion(1, p.getPlateau());*/
 		
-		p.getPlateau().deplacerPionA(p.getJoueurs().get(1).getChevaux().get(0), p.getPlateau().getChemin().get(2));
 		
-		p.getPlateau().afficher();
-		
-		p.getJoueurs().get(0).choisirPion(1, p.getPlateau());
+		/*Test Pion*/
+		while(true) {
+			p.jouerUnTour();
+			
+		}
 		
 		
 	}

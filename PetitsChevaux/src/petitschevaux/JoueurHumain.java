@@ -1,6 +1,8 @@
 package petitschevaux;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class JoueurHumain extends Joueur {
 
@@ -112,34 +114,60 @@ public class JoueurHumain extends Joueur {
 			
 		}
 		
+		/*Affichage des pions possible de jouer et selection*/
 		System.out.println();
 		
-		for(Pion pion :pionBougable) {
-			
-			String message = "Le pion "+pion.getId()+" sur la case ";
-			
-			for(CaseEcurie CE : p.getEcuries()) {
-				if(CE.getChevaux().indexOf(pion) != -1) {
-					message += "ecurie de sa couleur";
-				}
-			}
-			
-			for(CaseDeChemin CDC : p.getChemin()) {
-				if(CDC.getChevaux().indexOf(pion) != -1) {
-					message += "de chemin "+p.getChemin().indexOf(CDC);
-				}
-			}
-			
-			for(CaseDEchelle CDE : p.getEchelles().get(indiceDeLEchelle)) {
-				if(CDE.getChevaux().indexOf(pion) != -1) {
-					message += "d'echelle "+p.getEchelles().get(indiceDeLEchelle).indexOf(CDE);
-				}
-			}
-			
-			System.out.println(message);
-		}
 		
-		return null;////////////////////
+		/* Definition du pion "Initial" */
+		Pion reponse = null;
+		int rep = -1;
+		
+		
+		/* Verification que l'entier rentrer est bien un numero de couleur propose */
+		while((rep < 0 || rep >= pionBougable.size()) && pionBougable.size() != 0) {
+			
+			System.out.println("Quel pion voulez vous jouer : ");
+			/*Affichage des pions*/
+			
+			for(int i = 0; i<pionBougable.size(); i++) {
+				String message = i+" : pion "+pionBougable.get(i).getId()+" sur la case ";
+				for(CaseEcurie CE : p.getEcuries()) {
+					if(CE.getChevaux().indexOf(pionBougable.get(i)) != -1) {
+						message += "ecurie de sa couleur";
+					}
+				}
+				for(CaseDeChemin CDC : p.getChemin()) {
+					if(CDC.getChevaux().indexOf(pionBougable.get(i)) != -1) {
+						message += "de chemin "+p.getChemin().indexOf(CDC);
+					}
+				}
+				for(CaseDEchelle CDE : p.getEchelles().get(indiceDeLEchelle)) {
+					if(CDE.getChevaux().indexOf(pionBougable.get(i)) != -1) {
+						message += "d'echelle "+p.getEchelles().get(indiceDeLEchelle).indexOf(CDE);
+					}
+				}
+				System.out.println(message);
+			}
+			
+			
+			try {
+				rep = Partie.sc.nextInt();
+				
+			}catch (InputMismatchException exception) { 
+			    System.out.println("Mauvaise entree");
+			    Partie.sc.next();
+			    rep = -1;
+			}
+				
+		}
+		/* Vide le scanner */
+		//Partie.sc.nextLine();
+		
+		if(pionBougable.size()>=1)
+			reponse = pionBougable.get(rep);
+		
+		
+		return reponse;
 	}
 	
 }

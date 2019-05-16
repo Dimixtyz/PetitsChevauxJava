@@ -11,6 +11,7 @@ public class Partie {
 	private Joueur joueurCourrant;
 	private Plateau plateau;
 	private ArrayList<Joueur> joueurs;
+	public static final Scanner sc = new Scanner(System.in);
 	
 	/**
 	 * Initialisation des variables de la classe
@@ -37,8 +38,6 @@ public class Partie {
 			 * couleurChoisi : Couleur selectionn�e par l'utilisateur
 			 * couleursDisponible : ArrayList des couleurs disponibles � la selection
 			 */
-		
-			Scanner sc = new Scanner(System.in);
 			String nomChoisi;
 			Couleur couleurChoisi;
 			ArrayList<Couleur> couleursDisponible = new ArrayList<Couleur>();
@@ -86,11 +85,15 @@ public class Partie {
 				sc.nextLine();
 			}
 			
-			sc.close();
 			
 			
 		}
 		plateau.setJoueurs(joueurs);/*On passe la liste des joueurs pour l'affichage*/
+		
+		/*Definition du joueur qui commence*/
+		this.joueurCourrant = joueurs.get(de.nextInt(joueurs.size()));
+		System.out.println(joueurCourrant.getCouleur().getCCode()+joueurCourrant.getNom()+" Commence !\033[0m");
+		
 	}
 	
 	/**
@@ -172,8 +175,12 @@ public class Partie {
 	public void jouerUnTour() {
 		
 		int resultatDe = lancerDe();
+		Pion pionABouger;
 		
-		Pion pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
+		System.out.println("Resultat de : "+resultatDe);
+		
+		pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
+		
 		
 		/*Recherche de l'echelle */
 		int indiceDeLEchelle = 0;
@@ -181,7 +188,6 @@ public class Partie {
 			if(plateau.getEchelles().get(j).get(0).getCouleur() == joueurCourrant.getCouleur())
 				indiceDeLEchelle = j;
 		}
-		
 		
 		if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
 			
@@ -206,6 +212,10 @@ public class Partie {
 					if(cases.getChevaux().indexOf(pionABouger) == cases.getChevaux().indexOf(joueurCourrant.getCaseDeDepart())-1)
 						caseDArriver = plateau.getEchelles().get(indiceDeLEchelle).get(0);
 					
+					/*Passage de la case 55*/
+					if(plateau.getChemin().indexOf(cases)+resultatDe > 55)
+						caseDArriver = plateau.getChemin().get(plateau.getChemin().indexOf(cases)+resultatDe-56);
+					
 					/*Si il n y a pas de monter sur les echelles*/
 					else {
 						caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
@@ -213,6 +223,7 @@ public class Partie {
 			
 				}
 			}
+			
 			
 			/*Si le pion est sur une echelle*/
 			for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
@@ -229,7 +240,10 @@ public class Partie {
 		/*Si le de a fait un 6 le joueur rejoue*/
 		if(resultatDe == 6) {
 			
+			plateau.afficher();
+			
 			resultatDe = lancerDe();
+			System.out.println("Resultat de : "+resultatDe);
 			
 			pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
 			
@@ -262,6 +276,8 @@ public class Partie {
 			}
 		}
 		
+		
+		plateau.afficher();
 		setJoueurCourrant(joueurCourrant);
 		
 		
