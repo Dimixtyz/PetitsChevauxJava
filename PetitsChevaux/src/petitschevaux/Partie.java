@@ -174,13 +174,9 @@ public class Partie {
 	 */
 	public void jouerUnTour() {
 		
-		int resultatDe = lancerDe();
+		int nombreTours = 0;
 		Pion pionABouger;
-		
-		System.out.println("Resultat de : "+resultatDe);
-		
-		pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
-		
+		int resultatDe;
 		
 		/*Recherche de l'echelle */
 		int indiceDeLEchelle = 0;
@@ -189,63 +185,12 @@ public class Partie {
 				indiceDeLEchelle = j;
 		}
 		
-		if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
-			
-			Case caseDArriver = null;
-			
-			/*Si le pion est a l ecurie*/
-			for(Case cases : plateau.getEcuries()) {
-				if(cases.getChevaux().indexOf(pionABouger) != -1)
-					caseDArriver = joueurCourrant.getCaseDeDepart();
-			}
-			
-			/*Si le pion est sur le plateau*/
-			for(Case cases : plateau.getChemin()) {
-				if(cases.getChevaux().indexOf(pionABouger) != -1) {
-					
-					/*Cas exceptionel echelle joueur 1*/
-					if(cases.getChevaux().indexOf(pionABouger) == 55 && joueurCourrant == joueurs.get(0)) {
-						caseDArriver = plateau.getEchelles().get(0).get(0);
-					}
-					
-					/*Monter des echelle joueur 2/3/4*/
-					if(cases.getChevaux().indexOf(pionABouger) == cases.getChevaux().indexOf(joueurCourrant.getCaseDeDepart())-1)
-						caseDArriver = plateau.getEchelles().get(indiceDeLEchelle).get(0);
-					
-					/*Passage de la case 55*/
-					if(plateau.getChemin().indexOf(cases)+resultatDe > 55)
-						caseDArriver = plateau.getChemin().get(plateau.getChemin().indexOf(cases)+resultatDe-56);
-					
-					/*Si il n y a pas de monter sur les echelles*/
-					else {
-						caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
-					}
-			
-				}
-			}
-			
-			
-			/*Si le pion est sur une echelle*/
-			for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
-				for(Case cases : ech) {
-					if(cases.getChevaux().indexOf(pionABouger) != -1)
-						caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+1));
-				}
-			}
-			
-			
-			plateau.deplacerPionA(pionABouger, caseDArriver);
-		}
-		
-		/*Si le de a fait un 6 le joueur rejoue*/
-		if(resultatDe == 6) {
-			
-			plateau.afficher();
-			
+		do {
+			nombreTours++;
 			resultatDe = lancerDe();
 			System.out.println("Resultat de : "+resultatDe);
-			
 			pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
+			
 			
 			if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
 				
@@ -259,9 +204,29 @@ public class Partie {
 				
 				/*Si le pion est sur le plateau*/
 				for(Case cases : plateau.getChemin()) {
-					if(cases.getChevaux().indexOf(pionABouger) != -1)
-						caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
+					if(cases.getChevaux().indexOf(pionABouger) != -1) {
+						
+						/*Cas exceptionel echelle joueur 1*/
+						if(cases.getChevaux().indexOf(pionABouger) == 55 && joueurCourrant == joueurs.get(0)) {
+							caseDArriver = plateau.getEchelles().get(0).get(0);
+						}
+						
+						/*Monter des echelle joueur 2/3/4*/
+						if(cases.getChevaux().indexOf(pionABouger) == cases.getChevaux().indexOf(joueurCourrant.getCaseDeDepart())-1)
+							caseDArriver = plateau.getEchelles().get(indiceDeLEchelle).get(0);
+						
+						/*Passage de la case 55*/
+						if(plateau.getChemin().indexOf(cases)+resultatDe > 55)
+							caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe)-56);
+						
+						/*Si il n y a pas de monter sur les echelles*/
+						else {
+							caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
+						}
+				
+					}
 				}
+				
 				
 				/*Si le pion est sur une echelle*/
 				for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
@@ -273,11 +238,11 @@ public class Partie {
 				
 				
 				plateau.deplacerPionA(pionABouger, caseDArriver);
+				plateau.afficher();
 			}
-		}
+		}while(resultatDe == 6 && nombreTours <= 1);/*Le joueur peut rejouer s'il fait un 6 mais seulement 1 fois maximum*/
 		
 		
-		plateau.afficher();
 		setJoueurCourrant(joueurCourrant);
 		
 		
