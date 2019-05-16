@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Partie {
 	
 	private Random de;
-	private Joueur joueurCourrant;
+	private Joueur joueurCourant;
 	private Plateau plateau;
 	private ArrayList<Joueur> joueurs;
 	public static final Scanner sc = new Scanner(System.in);
@@ -82,7 +82,8 @@ public class Partie {
 					
 				joueurs.add(new JoueurHumain(nomChoisi ,couleurChoisi));
 				/* Vide le scanner */
-				sc.nextLine();
+				if(sc.hasNextLine())
+					sc.nextLine();
 			}
 			
 			
@@ -91,8 +92,8 @@ public class Partie {
 		plateau.setJoueurs(joueurs);/*On passe la liste des joueurs pour l'affichage*/
 		
 		/*Definition du joueur qui commence*/
-		this.joueurCourrant = joueurs.get(de.nextInt(joueurs.size()));
-		System.out.println(joueurCourrant.getCouleur().getCCode()+joueurCourrant.getNom()+" Commence !\033[0m");
+		this.joueurCourant = joueurs.get(de.nextInt(joueurs.size()));
+		System.out.println(joueurCourant.getCouleur().getCCode()+joueurCourant.getNom()+" Commence !\033[0m");
 		
 	}
 	
@@ -160,6 +161,8 @@ public class Partie {
 			
 		}
 		
+		/*Affichage du plateau initial*/
+		plateau.afficher();
 	}
 	
 	/**
@@ -181,15 +184,17 @@ public class Partie {
 		/*Recherche de l'echelle */
 		int indiceDeLEchelle = 0;
 		for(int j = 0; j<plateau.getEchelles().size(); j++) {
-			if(plateau.getEchelles().get(j).get(0).getCouleur() == joueurCourrant.getCouleur())
+			if(plateau.getEchelles().get(j).get(0).getCouleur() == joueurCourant.getCouleur())
 				indiceDeLEchelle = j;
 		}
 		
 		do {
 			nombreTours++;
 			resultatDe = lancerDe();
+			System.out.println();
 			System.out.println("Resultat de : "+resultatDe);
-			pionABouger = joueurCourrant.choisirPion(resultatDe, plateau);
+			System.out.println(joueurCourant.getCouleur().getCCode()+"C'est le tour de : "+joueurCourant.getNom()+"\033[0m");
+			pionABouger = joueurCourant.choisirPion(resultatDe, plateau);
 			
 			
 			if(pionABouger != null) {/*Si le joueur peux jouer un pion*/
@@ -199,7 +204,7 @@ public class Partie {
 				/*Si le pion est a l ecurie*/
 				for(Case cases : plateau.getEcuries()) {
 					if(cases.getChevaux().indexOf(pionABouger) != -1)
-						caseDArriver = joueurCourrant.getCaseDeDepart();
+						caseDArriver = joueurCourant.getCaseDeDepart();
 				}
 				
 				/*Si le pion est sur le plateau*/
@@ -207,16 +212,16 @@ public class Partie {
 					if(cases.getChevaux().indexOf(pionABouger) != -1) {
 						
 						/*Cas exceptionel echelle joueur 1*/
-						if(cases.getChevaux().indexOf(pionABouger) == 55 && joueurCourrant == joueurs.get(0)) {
+						if(plateau.getChemin().indexOf(cases) == 55 && joueurCourant == joueurs.get(0)) {
 							caseDArriver = plateau.getEchelles().get(0).get(0);
 						}
 						
 						/*Monter des echelle joueur 2/3/4*/
-						if(cases.getChevaux().indexOf(pionABouger) == cases.getChevaux().indexOf(joueurCourrant.getCaseDeDepart())-1)
+						else if(plateau.getChemin().indexOf(cases) == cases.getChevaux().indexOf(joueurCourant.getCaseDeDepart())-1)
 							caseDArriver = plateau.getEchelles().get(indiceDeLEchelle).get(0);
 						
 						/*Passage de la case 55*/
-						if(plateau.getChemin().indexOf(cases)+resultatDe > 55)
+						else if(plateau.getChemin().indexOf(cases)+resultatDe > 55)
 							caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe)-56);
 						
 						/*Si il n y a pas de monter sur les echelles*/
@@ -238,12 +243,16 @@ public class Partie {
 				
 				
 				plateau.deplacerPionA(pionABouger, caseDArriver);
-				plateau.afficher();
 			}
+			else {
+				System.out.println("Vous ne pouvez pas jouer");
+				sc.nextLine();
+			}
+			plateau.afficher();
 		}while(resultatDe == 6 && nombreTours <= 1);/*Le joueur peut rejouer s'il fait un 6 mais seulement 1 fois maximum*/
 		
 		
-		setJoueurCourrant(joueurCourrant);
+		setjoueurCourant(joueurCourant);
 		
 		
 	}
@@ -278,18 +287,18 @@ public class Partie {
 	/**
 	 * Retourne le joueur qui est en train de jouer
 	 */
-	public Joueur getJoueurCourrant() {
-		return joueurCourrant;
+	public Joueur getjoueurCourant() {
+		return joueurCourant;
 	}
 	
 	/**
 	 * Definie le joueur suivant qui va jouer
 	 * @param joueurActuel le joueur qui vient de joueur
 	 */
-	public void setJoueurCourrant(Joueur joueurActuel) {
+	public void setjoueurCourant(Joueur joueurActuel) {
 		int numJ = joueurs.indexOf(joueurActuel);
-		numJ = (numJ+1)%4;
-		this.joueurCourrant = joueurs.get(numJ);
+		numJ = (numJ+1)%joueurs.size();
+		this.joueurCourant = joueurs.get(numJ);
 	}
 	
 	/**

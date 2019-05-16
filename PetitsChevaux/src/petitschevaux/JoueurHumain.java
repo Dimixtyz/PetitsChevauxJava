@@ -61,8 +61,8 @@ public class JoueurHumain extends Joueur {
 					for(int i = 1; i <= valeurDe; i++) {
 						/*Definition de la case a tester*/
 						numCaseTest = p.getChemin().indexOf(CDC)+i;
-						if(p.getChemin().indexOf(CDC)+i > 54) {
-							numCaseTest = p.getChemin().indexOf(CDC)+i-54;
+						if(numCaseTest > 55) {
+							numCaseTest -= 56;
 						}
 						
 						/*On verifie si le pion est sur la derniere case de son chemin et peut passer*/
@@ -123,47 +123,56 @@ public class JoueurHumain extends Joueur {
 		int rep = -1;
 		
 		
-		/* Verification que l'entier rentrer est bien un numero de couleur propose */
-		while((rep < 0 || rep >= pionBougable.size()) && pionBougable.size() != 0) {
-			
-			System.out.println("Quel pion voulez vous jouer : ");
-			/*Affichage des pions*/
-			
-			for(int i = 0; i<pionBougable.size(); i++) {
-				String message = i+" : pion "+pionBougable.get(i).getId()+" sur la case ";
-				for(CaseEcurie CE : p.getEcuries()) {
-					if(CE.getChevaux().indexOf(pionBougable.get(i)) != -1) {
-						message += "ecurie de sa couleur";
-					}
-				}
-				for(CaseDeChemin CDC : p.getChemin()) {
-					if(CDC.getChevaux().indexOf(pionBougable.get(i)) != -1) {
-						message += "de chemin "+p.getChemin().indexOf(CDC);
-					}
-				}
-				for(CaseDEchelle CDE : p.getEchelles().get(indiceDeLEchelle)) {
-					if(CDE.getChevaux().indexOf(pionBougable.get(i)) != -1) {
-						message += "d'echelle "+p.getEchelles().get(indiceDeLEchelle).indexOf(CDE);
-					}
-				}
-				System.out.println(message);
-			}
-			
-			
-			try {
-				rep = Partie.sc.nextInt();
+		/* (Selection si au moins 2 pions possible a bouger) Verification que l'entier rentrer est bien un numero de couleur propose */
+		if(pionBougable.size() >=2 ) {
+			while((rep < 0 || rep >= pionBougable.size())) {
 				
-			}catch (InputMismatchException exception) { 
-			    System.out.println("Mauvaise entree");
-			    Partie.sc.next();
-			    rep = -1;
-			}
+				System.out.println("Quel pion voulez vous jouer : ");
+				/*Affichage des pions*/
 				
+				for(int i = 0; i<pionBougable.size(); i++) {
+					String message = i+" : pion "+pionBougable.get(i).getId()+" sur la case ";
+					for(CaseEcurie CE : p.getEcuries()) {
+						if(CE.getChevaux().indexOf(pionBougable.get(i)) != -1) {
+							message += "ecurie de sa couleur";
+						}
+					}
+					for(CaseDeChemin CDC : p.getChemin()) {
+						if(CDC.getChevaux().indexOf(pionBougable.get(i)) != -1) {
+							message += "de chemin "+p.getChemin().indexOf(CDC);
+						}
+					}
+					for(CaseDEchelle CDE : p.getEchelles().get(indiceDeLEchelle)) {
+						if(CDE.getChevaux().indexOf(pionBougable.get(i)) != -1) {
+							message += "d'echelle "+p.getEchelles().get(indiceDeLEchelle).indexOf(CDE);
+						}
+					}
+					System.out.println(message);
+				}
+				
+				
+				try {
+					rep = Partie.sc.nextInt();
+					
+				}catch (InputMismatchException exception) { 
+				    System.out.println("Mauvaise entree");
+				    Partie.sc.next();
+				    rep = -1;
+				}
+					
+			}
+			/*On vide le scanner*/
+			if(Partie.sc.hasNextLine())
+				Partie.sc.nextLine();
 		}
-		/* Vide le scanner */
-		//Partie.sc.nextLine();
 		
-		if(pionBougable.size()>=1)
+		if(pionBougable.size() == 1) {
+			reponse = pionBougable.get(0);
+			System.out.println("Vous ne pouvez bouger que le pion "+pionBougable.get(0).getId());
+			Partie.sc.nextLine();
+		}
+		
+		if(pionBougable.size()>=2)
 			reponse = pionBougable.get(rep);
 		
 		
