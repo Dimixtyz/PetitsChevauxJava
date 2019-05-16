@@ -199,7 +199,7 @@ public class Plateau {
 			
 					if(laCase != null) {
 						if(laCase.getChevaux().size()==1) {
-							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+"\u265e\033[0m";/*Case occupe par 1 seul cheval*/
+							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+"\u265e \033[0m";/*Case occupe par 1 seul cheval*/
 						}
 						else if(laCase.getChevaux().size()>1) {
 							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+laCase.getChevaux().size()+"\u265e\033[0m";/*Case occupe par plusieurs chevaux*/
