@@ -54,7 +54,6 @@ public class JoueurHumain extends Joueur {
 						/*Si c'est un pion de l'ecurie 0*/
 						if((valeurDe != 1 && this.getCouleur() == p.getEcuries().get(0).getCouleur()) || (!p.getEchelles().get(0).get(0).peutSArreter(pions)&& this.getCouleur() == p.getEcuries().get(0).getCouleur())) {
 							bougable = false;
-							System.out.println("########### PION ECHELLE 0 PEUT PAS MONTER ECHELLE ############");
 						}
 					}
 					
@@ -70,20 +69,17 @@ public class JoueurHumain extends Joueur {
 							
 							if(valeurDe != 1 || !p.getEchelles().get(indiceDeLEchelle).get(0).peutSArreter(pions)) {
 								bougable = false;
-								System.out.println("########### DERNIERE CASE MAIS PAS 1 ############");
 								break;
 							}
 						}
 						/*On verifie que le pion peut passer sur les case entre sa case et la case d'arriver*/
 						else if(!p.getChemin().get(numCaseTest).peutPasser(pions) && i != valeurDe) {
 							bougable = false;
-							System.out.println("########### BLOQUE PAR (!PASSER) ############");
 							break;
 						}
 						/*On verifie qu'il peut s'arreter sur la case d'arriver*/
 						else if(i == valeurDe-1 && !p.getChemin().get(numCaseTest).peutSArreter(pions)) {
 							bougable = false;
-							System.out.println("########### PAS POSSIBLE DE S ARRETER DERNIERE CASE ############");
 							break;
 						}
 					}

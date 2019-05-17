@@ -174,8 +174,25 @@ public class Partie {
 	
 	/**
 	 * Fonction qui permet de jouer un tour de la partie
+	 * @throws ConflitDeCouleurException 
+	 * @throws CasePleineException 
 	 */
-	public void jouerUnTour() {
+	public void jouerUnTour() throws ConflitDeCouleurException, CasePleineException {
+		
+		/*Verification qu'il n y a pas de conflit de couleurs */
+		Couleur verificationConflit = null;
+		for(CaseDeChemin CDC : plateau.getChemin()) {
+			for(int i = 0 ; i < CDC.getChevaux().size(); i++) {
+				if(i == 0) {
+					verificationConflit = CDC.getChevaux().get(i).getCouleur();
+				}
+				else {
+					if(CDC.getChevaux().get(i).getCouleur() != verificationConflit) {
+						throw new ConflitDeCouleurException("Plusieurs pions de differente couleur ce trouve sur la meme case");
+					}
+				}
+			}
+		}
 		
 		int nombreTours = 0;
 		Pion pionABouger;
@@ -237,10 +254,17 @@ public class Partie {
 				/*Si le pion est sur une echelle*/
 				for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
 					for(Case cases : ech) {
-						if(cases.getChevaux().indexOf(pionABouger) != -1)
+						if(cases.getChevaux().indexOf(pionABouger) != -1) {
 							caseDArriver = ech.get((ech.indexOf(cases)+1));
+							/*Verification que la case n'est pas pleine :*/
+							if(caseDArriver.getChevaux().size()>= 1) {
+								throw new CasePleineException("Case d'echelle deja pleine");
+							}
+						}
 					}
 				}
+				
+				
 				
 				if(caseDArriver.getChevaux().size() >= 1 && caseDArriver.getChevaux().get(0).getCouleur() != joueurCourant.getCouleur()) {
 					this.mangerLesPions(caseDArriver);
