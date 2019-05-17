@@ -95,7 +95,7 @@ public class Plateau {
 						}
 						else {
 							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
-						}
+						} 
 					}
 								
 						

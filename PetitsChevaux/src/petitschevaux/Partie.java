@@ -213,7 +213,7 @@ public class Partie {
 						
 						/*Cas exceptionel echelle joueur 1*/
 						if(plateau.getChemin().indexOf(cases) == 55 && joueurCourant == joueurs.get(0)) {
-							caseDArriver = plateau.getEchelles().get(0).get(0);
+							caseDArriver = plateau.getEchelles().get(0).get(0); 
 						}
 						
 						/*Monter des echelle joueur 2/3/4*/

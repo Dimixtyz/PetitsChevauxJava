@@ -51,7 +51,7 @@ public class PetitsChevaux {
 		
 		p.getJoueurs().get(0).choisirPion(1, p.getPlateau());*/
 		
-		
+		 
 		/*Test Pion*/
 		while(!p.estPartieTermine()) {
 			p.jouerUnTour();

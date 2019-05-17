@@ -88,7 +88,7 @@ public class JoueurHumain extends Joueur {
 						}
 					}
 					
-					if(bougable) {
+					if(bougable) { 
 						pionBougable.add(pions);
 					}
 					
