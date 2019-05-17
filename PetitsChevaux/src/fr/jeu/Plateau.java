@@ -1,6 +1,13 @@
-package petitschevaux;
+package fr.jeu;
 
 import java.util.ArrayList;
+
+import fr.cases.Case;
+import fr.cases.CaseDEchelle;
+import fr.cases.CaseDeChemin;
+import fr.cases.CaseEcurie;
+import fr.joueur.Joueur;
+import fr.joueur.Pion;
 
 public class Plateau {
 	

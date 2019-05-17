@@ -1,8 +1,15 @@
-package petitschevaux;
+package fr.joueur;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import fr.cases.CaseDEchelle;
+import fr.cases.CaseDeChemin;
+import fr.cases.CaseEcurie;
+import fr.jeu.Couleur;
+import fr.jeu.Partie;
+import fr.jeu.Plateau;
 
 public class JoueurHumain extends Joueur {
 

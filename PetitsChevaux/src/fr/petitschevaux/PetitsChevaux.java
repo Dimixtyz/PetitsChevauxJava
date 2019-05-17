@@ -1,8 +1,13 @@
-package petitschevaux;
+package fr.petitschevaux;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import fr.exceptionpetitschevaux.CasePleineException;
+import fr.exceptionpetitschevaux.ConflitDeCouleurException;
+import fr.exceptionpetitschevaux.PasDeJoueursException;
+import fr.jeu.Partie;
 
 public class PetitsChevaux {
 

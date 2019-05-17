@@ -1,4 +1,7 @@
-package petitschevaux;
+package fr.cases;
+
+import fr.jeu.Couleur;
+import fr.joueur.Pion;
 
 public abstract class CaseColoree extends Case {
 

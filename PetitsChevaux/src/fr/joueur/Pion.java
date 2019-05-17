@@ -1,4 +1,6 @@
-package petitschevaux;
+package fr.joueur;
+
+import fr.jeu.Couleur;
 
 public class Pion {
 	

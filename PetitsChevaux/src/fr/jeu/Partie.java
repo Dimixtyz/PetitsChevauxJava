@@ -1,9 +1,20 @@
-package petitschevaux;
+package fr.jeu;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+
+import fr.cases.Case;
+import fr.cases.CaseDEchelle;
+import fr.cases.CaseDeChemin;
+import fr.cases.CaseEcurie;
+import fr.exceptionpetitschevaux.CasePleineException;
+import fr.exceptionpetitschevaux.ConflitDeCouleurException;
+import fr.exceptionpetitschevaux.PasDeJoueursException;
+import fr.joueur.Joueur;
+import fr.joueur.JoueurHumain;
+import fr.joueur.Pion;
 
 public class Partie {
 	

@@ -1,6 +1,10 @@
-package petitschevaux;
+package fr.joueur;
 
 import java.util.ArrayList;
+
+import fr.cases.Case;
+import fr.jeu.Couleur;
+import fr.jeu.Plateau;
 
 public abstract class Joueur {
 

@@ -1,4 +1,4 @@
-package petitschevaux;
+package fr.jeu;
 
 public enum Couleur {
 	

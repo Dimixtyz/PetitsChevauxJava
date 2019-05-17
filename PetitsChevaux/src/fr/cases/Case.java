@@ -1,6 +1,8 @@
-package petitschevaux;
+package fr.cases;
 
 import java.util.ArrayList;
+
+import fr.joueur.Pion;
 
 public abstract class Case {
 	

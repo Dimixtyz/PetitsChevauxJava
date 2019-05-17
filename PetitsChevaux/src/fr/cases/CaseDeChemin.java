@@ -1,4 +1,6 @@
-package petitschevaux;
+package fr.cases;
+
+import fr.joueur.Pion;
 
 /**
  * Classe des case de chemin 

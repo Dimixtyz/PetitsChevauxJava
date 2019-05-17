@@ -1,10 +1,12 @@
-package petitschevaux;
+package fr.cases;
 
-public class CaseDEchelle extends CaseColoree {
+import fr.jeu.Couleur;
+import fr.joueur.Pion;
+
+public class CaseEcurie extends CaseColoree {
 	
-	public CaseDEchelle(Couleur c) {
+	public CaseEcurie(Couleur c) {
 		super(c);
-		
 	}
 	
 	/**
@@ -13,8 +15,11 @@ public class CaseDEchelle extends CaseColoree {
 	 * @return vrai (true) si le pion peut passer la case, faux (false) sinon.
 	 */
 	public boolean peutPasser(Pion p) {
-		/* On ne peut pas sauter de case echelle */
-		return false;
+		/*Un pion peut sortir de l'ecurie seulement si c'est celle de sa couleur*/
+		if(p.getCouleur() == this.getCouleur())
+			return true;
+		else
+			return false;
 	}
 	
 	/**
@@ -23,8 +28,8 @@ public class CaseDEchelle extends CaseColoree {
 	 * @return vrai (true) si le pion peut s'arreter sur cette case, faux (false) sinon.
 	 */
 	public boolean peutSArreter(Pion p) {
-		/* S'il n'y a aucun pion le pion peut s'arreter sur la case */
-		if(this.getChevaux().size() == 0)
+		/*Un pion peut s'arreter sur une case ecurie seulement si c'est celle de sa couleur*/
+		if(p.getCouleur() == this.getCouleur())
 			return true;
 		else
 			return false;
