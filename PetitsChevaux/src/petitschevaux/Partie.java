@@ -217,13 +217,14 @@ public class Partie {
 						}
 						
 						/*Monter des echelle joueur 2/3/4*/
-						else if(plateau.getChemin().indexOf(cases) == cases.getChevaux().indexOf(joueurCourant.getCaseDeDepart())-1)
+						else if(plateau.getChemin().indexOf(cases) == plateau.getChemin().indexOf(joueurCourant.getCaseDeDepart())-1) {
 							caseDArriver = plateau.getEchelles().get(indiceDeLEchelle).get(0);
+						}
 						
 						/*Passage de la case 55*/
-						else if(plateau.getChemin().indexOf(cases)+resultatDe > 55)
+						else if(plateau.getChemin().indexOf(cases)+resultatDe > 55) {
 							caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe)-56);
-						
+						}
 						/*Si il n y a pas de monter sur les echelles*/
 						else {
 							caseDArriver = plateau.getChemin().get((plateau.getChemin().indexOf(cases)+resultatDe));
@@ -237,7 +238,7 @@ public class Partie {
 				for(ArrayList<CaseDEchelle> ech : plateau.getEchelles()) {
 					for(Case cases : ech) {
 						if(cases.getChevaux().indexOf(pionABouger) != -1)
-							caseDArriver = ech.get((plateau.getChemin().indexOf(cases)+1));
+							caseDArriver = ech.get((ech.indexOf(cases)+1));
 					}
 				}
 				

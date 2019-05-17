@@ -53,7 +53,7 @@ public class PetitsChevaux {
 		
 		
 		/*Test Pion*/
-		while(true) {
+		while(!p.estPartieTermine()) {
 			p.jouerUnTour();
 			
 		}
