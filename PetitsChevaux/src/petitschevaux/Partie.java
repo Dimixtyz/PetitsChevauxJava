@@ -242,7 +242,9 @@ public class Partie {
 					}
 				}
 				
-				
+				if(caseDArriver.getChevaux().size() >= 1 && caseDArriver.getChevaux().get(0).getCouleur() != joueurCourant.getCouleur()) {
+					this.mangerLesPions(caseDArriver);
+				}
 				plateau.deplacerPionA(pionABouger, caseDArriver);
 			}
 			else {
@@ -323,15 +325,14 @@ public class Partie {
 	private void mangerLesPions(Case c) {
 		
 		for(Pion p : c.getChevaux()) {
-			/*On ajoute le cheval � la case ecuries de sa couleur puis on le retire de la case*/
+			/*On ajoute le cheval a la case ecuries de sa couleur puis on le retire de la case*/
 			for(CaseEcurie ce : plateau.getEcuries()) {
 				if(p.getCouleur() == ce.getCouleur()) {
 					ce.ajouteCheval(p);
-					c.retirerCheval(p);
 				}
 			}
-			
 		}
+		c.getChevaux().clear();
 	}
 
 }
