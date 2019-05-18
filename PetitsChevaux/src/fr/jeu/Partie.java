@@ -61,10 +61,10 @@ public class Partie {
 			for(int i = 0; i < nb; i++) {  
 				
 				/*Definition du nom du joueur*/
-				
+				System.out.println();
 				System.out.println("Quel est le nom du joueur "+(i+1));
 				nomChoisi = sc.nextLine();
-				
+				System.out.println();
 				
 				/* Definition de la couleur du joueur */
 				int rep = -1;
@@ -74,14 +74,14 @@ public class Partie {
 					
 					System.out.println("Choissiser une des couleurs suivantes : ");
 					for(int j = 0; j < couleursDisponible.size(); j++) {
-						System.out.println(j+" "+couleursDisponible.get(j).getNom());
+						System.out.println(j+" "+couleursDisponible.get(j).getCCode()+couleursDisponible.get(j).getNom()+"\033[0m");
 					}
 					
 					
 					try {
 						rep = sc.nextInt();
 					}catch (InputMismatchException exception) { 
-					    System.out.println("Mauvaise entr�e");
+					    System.out.println("Mauvaise entrée");
 					    sc.next();
 					    rep = -1;
 					}
@@ -311,9 +311,12 @@ public class Partie {
 					victoire = false;
 				}
 			}
-			
+			/*Affichage de victoire + retourne que c'est une partie terminer*/
 			if(victoire) {
-				System.out.println("Victoire du "+listesCE.get(0).getCouleur().getNom());
+				System.out.println();
+				System.out.println();
+				System.out.println("Victoire du joueur "+listesCE.get(0).getCouleur().getCCode()+listesCE.get(0).getCouleur().getNom()+"\033[0m");
+				System.out.println();
 				return true;
 			}
 			
