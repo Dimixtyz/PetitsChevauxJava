@@ -1,5 +1,10 @@
 package fr.exceptionpetitschevaux;
 
+/**
+ * Classe d'exception s'il y a un conflit de couleur
+ * @author Quentin Fontaine
+ */
+
 public class ConflitDeCouleurException extends Exception{
 	
 	public ConflitDeCouleurException(){

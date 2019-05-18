@@ -3,26 +3,29 @@ package fr.cases;
 import fr.joueur.Pion;
 
 /**
- * Classe des case de chemin 
+ * Classe des cases de chemin
  * @author Quentin Fontaine
  */
 
 public class CaseDeChemin extends Case {
 	
+	/**
+	 * Constructeur d'une case de chemin
+	 */
 	public CaseDeChemin(){
 		
 	}
 	
 	/**
-	 * Verifie si un pion peut passer une case
+	 * Vérifie si un pion peut passer une case
 	 * @param p un pion
 	 * @return vrai (true) si le pion peut passer la case, faux (false) sinon.
 	 */
 	public boolean peutPasser(Pion p) {
-		 /*Par defaut le pion peut passer la case*/
+		/*Par defaut le pion peut passer la case*/
 		boolean peutPasser = true;
 		
-		/*On verifie qu'il n'y a pas de pion d'une autre couleur sur la case*/
+		/*Vérifie qu'il n'y a pas de pions d'une autre couleur sur la case*/
 		for(Pion x : super.getChevaux()) {
 			
 			if(x.getCouleur() != p.getCouleur()) {
@@ -35,12 +38,12 @@ public class CaseDeChemin extends Case {
 	}
 	
 	/**
-	 * Verifie si un pion peut s'arreter sur une case
+	 * Vérifie si un pion peut s'arrêter sur une case
 	 * @param p un pion
-	 * @return vrai (true) si le pion peut s'arreter sur cette case, faux (false) sinon.
+	 * @return vrai (true) si le pion peut s'arrêter sur cette case, faux (false) sinon.
 	 */
 	public boolean peutSArreter(Pion p) { 
-		/* Un Pion peut toujours s'arreter sur une case de chemin*/
+		/* Un pion peut toujours s'arrêter sur une case de chemin*/
 		return true;
 	}
 	

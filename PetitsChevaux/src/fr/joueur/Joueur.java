@@ -6,11 +6,28 @@ import fr.cases.Case;
 import fr.jeu.Couleur;
 import fr.jeu.Plateau;
 
+/**
+ * Classe abstraite d'un joueur
+ * @author Quentin Fontaine
+ */
+
 public abstract class Joueur {
 
+	/**
+	 * Nom du joueur
+	 */
 	private String nom;
+	/**
+	 * Couleur du joueur
+	 */
 	private Couleur couleur;
+	/**
+	 * Case de départ sur le plateau du joueur
+	 */
 	private Case caseDeDepart;
+	/**
+	 * Liste des pions d'un joueur
+	 */
 	private ArrayList<Pion> chevaux = new ArrayList<Pion>();
 	
 	/**
@@ -22,6 +39,7 @@ public abstract class Joueur {
 		this.nom = nom;
 		this.couleur = couleur;
 		
+		/*On ajoute au joueur 4 pions*/
 		for(int k = 0; k < 4; k++) {
 			String idPions = couleur.getNom()+" "+(k+1);
 			chevaux.add(new Pion(idPions, couleur));
@@ -30,16 +48,16 @@ public abstract class Joueur {
 	}
 	
 	/**
-	 * Getter de la case de depart du joueur
-	 * @return retourne la case de depart du joueur
+	 * Getter de la case de départ du joueur
+	 * @return retourne la case de départ du joueur
 	 */
 	public Case getCaseDeDepart() {
 		return caseDeDepart;
 	}
 	
 	/**
-	 * Defini la case de depart d'un joueur
-	 * @param c la case de depart
+	 * Définit la case de départ d'un joueur
+	 * @param c la case de départ
 	 */
 	public void setCaseDeDepart(Case c) {
 		this.caseDeDepart = c;
@@ -55,7 +73,7 @@ public abstract class Joueur {
 	
 	/**
 	 * Setter des pions
-	 * @param pions la liste des pion d'un joueur
+	 * @param pions la liste des pions d'un joueur
 	 */
 	public void setChevaux(ArrayList<Pion> pions) {
 		this.chevaux = pions;
@@ -86,8 +104,8 @@ public abstract class Joueur {
 	}
 	
 	/**
-	 * Fonction de choix du pion a bouger
-	 * @param valeurDe la valeur du de
+	 * Fonction de choix du pion à bouger
+	 * @param valeurDe la valeur du dé
 	 * @param p le plateau de la partie
 	 * @return retourne le pion que le joueur joue
 	 */

@@ -9,11 +9,14 @@ import fr.exceptionpetitschevaux.ConflitDeCouleurException;
 import fr.exceptionpetitschevaux.PasDeJoueursException;
 import fr.jeu.Partie;
 
-public class PetitsChevaux {
 
-	public PetitsChevaux() {
-		
-	}
+/**
+ * Classe Principale du jeu
+ * @author quentin
+ *
+ */
+public class PetitsChevaux {
+	
 	
 	public static void main(String[] args) {
 		
@@ -21,13 +24,14 @@ public class PetitsChevaux {
 		Partie p = new Partie();
 	
 		/*
-		 * Demande a l'utilisateur du nombre de joueurs
+		 * Demande à l'utilisateur le nombre de joueurs
 		 * Puis Initialisation des joueurs
 		 */
+		
 		int nombreDeJoueurs;
 		Scanner sc = new Scanner(System.in);
 		do { 
-			System.out.println("Combiens y-a-t il de joueurs ? ");	
+			System.out.println("Combien y a-t-il de joueurs ? ");	
 			try {
 				nombreDeJoueurs = sc.nextInt();
 			}catch (InputMismatchException exception) { 
@@ -35,14 +39,16 @@ public class PetitsChevaux {
 			    sc.next();
 			    nombreDeJoueurs = -1;
 			}
-		}while(nombreDeJoueurs <= 0 || nombreDeJoueurs > 4);// Verification que le nombre de joueurs et compris entre 1 et 4
+		}while(nombreDeJoueurs <= 0 || nombreDeJoueurs > 4);// Vérification que le nombre de joueurs est compris entre 1 et 4
 		
+		/*Vérification que le nombre de joueur n'est pas égal à 0*/
 		try {
 			p.initialiserJoueurs(nombreDeJoueurs);
 		}catch(PasDeJoueursException e) {
 			System.out.println(e);
 		}
 		
+		/* Initialisation du plateau */
 		p.initialiserPlateau();
 		
 		

@@ -3,12 +3,19 @@ package fr.cases;
 import fr.jeu.Couleur;
 import fr.joueur.Pion;
 
-public abstract class CaseColoree extends Case {
+/**
+ * Classe abstraite des cases colorées
+ * @author Quentin Fontaine
+ */
 
+public abstract class CaseColoree extends Case {
+	/**
+	 * Couleur de la case
+	 */
 	private Couleur couleur;
 	
 	/**
-	 * Constructeur d'une case coloree
+	 * Constructeur d'une case colorée
 	 * @param c couleur de la case
 	 */
 	public CaseColoree(Couleur c) {
@@ -24,12 +31,12 @@ public abstract class CaseColoree extends Case {
 	}
 	
 	/**
-	 * Verifie si un pion peut passer la case
+	 * Vérifie si un pion peut passer la case
 	 */
 	public abstract boolean peutPasser(Pion p);
 	
 	/**
-	 * Verifie si un pion peut s'arreter sur la case
+	 * Vérifie si un pion peut s'arrêter sur la case
 	 */
 	public abstract boolean peutSArreter(Pion p);
 	

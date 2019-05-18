@@ -4,8 +4,15 @@ import java.util.ArrayList;
 
 import fr.joueur.Pion;
 
+/**
+ * Classe abstraite des cases
+ * @author Quentin Fontaine
+ */
+
 public abstract class Case {
-	
+	/**
+	 * Tableau comportant les chevaux sur une case
+	 */
 	private ArrayList<Pion> chevaux = new ArrayList<Pion>();
 	
 	/**
@@ -25,7 +32,7 @@ public abstract class Case {
 	
 	/**
 	 * Fonction pour ajouter un pion sur la case
-	 * @param p le pion a ajouter
+	 * @param p le pion à ajouter
 	 */
 	public void ajouteCheval(Pion p) {
 		boolean deja = false;
@@ -40,12 +47,12 @@ public abstract class Case {
 	}
 	
 	/**
-	 * Verifie si un pion peut passer la case
+	 * Vérifie si un pion peut passer la case
 	 */
 	public abstract boolean peutPasser(Pion p);
 	
 	/**
-	 * Verifie si un pion peut s'arreter sur la case
+	 * Vérifie si un pion peut s'arrêter sur la case
 	 */
 	public abstract boolean peutSArreter(Pion p);
 	
@@ -54,7 +61,7 @@ public abstract class Case {
 	 * @param p un pion
 	 */
 	public void retirerCheval(Pion p) {
-		/*Verifie que le pion est bien present sur la case */
+		/*Vérifie que le pion est bien présent sur la case */
 		for(int i = 0; i < chevaux.size(); i++) {
 			if(chevaux.get(i) == p)
 				chevaux.remove(p);

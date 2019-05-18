@@ -9,22 +9,35 @@ import fr.cases.CaseEcurie;
 import fr.joueur.Joueur;
 import fr.joueur.Pion;
 
+/**
+ * Classe de plateau des petits chevaux
+ * @author Quentin Fontaine
+ */
+
 public class Plateau {
 	
 	/**
-	 * Variables stockant les cases du plateau
+	 * Liste des échelles 
 	 */
-	
 	private ArrayList<ArrayList<CaseDEchelle>> echelles;
+	/**
+	 * Tableau des écuries
+	 */
 	private ArrayList<CaseEcurie> ecuries;
+	/**
+	 * Tableau des cases de chemin du plateau
+	 */
 	private ArrayList<CaseDeChemin> chemin;
-	private ArrayList<Joueur> joueurs; /*Pouvoir voir la couleur du joueur pour l'affichage du plateau*/
+	/*Pouvoir voir la couleur du joueur pour l'affichage du plateau*/
+	/**
+	 * Liste des joueurs de la partie
+	 */
+	private ArrayList<Joueur> joueurs;
 	
 	
 	/**
-	 * Initialisation des variables
+	 * Constructeur d'un plateau, initialisation des tableaux
 	 */
-	
 	public Plateau() {
 		echelles = new ArrayList<ArrayList<CaseDEchelle>>();
 		ecuries = new ArrayList<CaseEcurie>();
@@ -32,48 +45,65 @@ public class Plateau {
 	}
 	
 	/**
-	 * Fonctions getters
+	 * Fonction getter des écuries
+	 * @return retourne la liste des écuries
 	 */
-	
 	public ArrayList<CaseEcurie> getEcuries(){
 		return ecuries; 
 	}
 	
+	/**
+	 * Fonction getter des listes des échelles
+	 * @return retourne les listes d'échelles
+	 */
 	public ArrayList<ArrayList<CaseDEchelle>> getEchelles(){
 		return echelles;
 	}
 	
+	/**
+	 * Fonction getter de la liste des cases de chemin
+	 * @return retourne la liste des cases de chemin
+	 */
 	public ArrayList<CaseDeChemin> getChemin(){
 		return chemin;
 	}
 	
 	
 	/**
-	 * Fonctions pour etablir un plateau de jeu
+	 * Fonction d'ajout de case d'écurie
+	 * @param ce la case d'écurie à ajouter
 	 */
-	
 	public void addCaseEcuries(CaseEcurie ce) {
 		ecuries.add(ce);
 	}
+	/**
+	 * Fonction d'ajout de case d'échelle
+	 * @param ce la case d'échelle à ajouter
+	 */
 	public void addCaseEchelles(ArrayList<CaseDEchelle> ce) {
 		echelles.add(ce);
 	}
+	/**
+	 * Fonction d'ajout de case de chemin
+	 * @param cc la case de chemin à ajouter
+	 */
 	public void addCaseChemin(CaseDeChemin cc) {
 		chemin.add(cc);
 	}
 	
 	/**
-	 * Fonction qui affiche le plateau
+	 * Fonction qui affiche le plateau de jeu (Pour un terminal shell)
 	 */
-	
 	public void afficher() {
 	
-		/*Remplissage de la matrice a afficher*/
+		/*Remplissage de la matrice à afficher*/
 		String[][] affPlateau = new String[15][15];
 		
 		for(int ligne = 0; ligne < 15; ligne ++) {
 			
 			for(int colone = 0; colone < 15; colone ++) {
+				
+				/*Ajout des écuries dans la matrice*/
 				if((ligne < 6 || ligne > 8)&&(colone < 6 || colone > 8)) {
 					
 					/*Ecurie 3*/
@@ -86,6 +116,7 @@ public class Plateau {
 								affPlateau[ligne][colone]=joueurs.get(2).getCouleur().getCCode()+"  "+Couleur.BLANC.getCCode();
 							}
 						}
+						/*S'il n'y a pas de joueur 3, affichage d'une écurie blanche*/
 						else {
 							affPlateau[ligne][colone]=Couleur.BLANC.getCCode()+"  ";
 						}
@@ -137,12 +168,12 @@ public class Plateau {
 					
 				}
 			
-				/*Ligne horizontale et verticales*/
+				/*Lignes horizontales et verticales*/
 				else {
-					Case laCase = null;/*Case pour s'implifier l'attribution des cases sur la matrice*/
-					Couleur laCouleur;/*couleur des cases*/
+					/*Case pour simplifier l'attribution des cases sur la matrice*/
+					Case laCase = null;
 					
-					/*Attribution des cases a la matrice*/
+					/*Recherche de la case à afficher pour une ligne et une colonne du tableau*/
 					switch(colone) {
 						case 6:
 							if(ligne >= 0 && ligne <= 6)
@@ -204,13 +235,17 @@ public class Plateau {
 						
 							
 			
+					/*Si la ligne et la colone ont une case*/
 					if(laCase != null) {
+						/*S'il y a un cheval sur cette case*/
 						if(laCase.getChevaux().size()==1) {
 							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+"\u265e \033[0m";/*Case occupe par 1 seul cheval*/
 						}
+						/*S'il y a plus d'un cheval*/
 						else if(laCase.getChevaux().size()>1) {
 							affPlateau[ligne][colone]=laCase.getChevaux().get(0).getCouleur().getCCode()+laCase.getChevaux().size()+"\u265e\033[0m";/*Case occupe par plusieurs chevaux*/
 						}
+						/*Si cette case est une case d'échelle, on affiche son numéro ou le cheval s'il y en a un*/
 						else if(laCase instanceof CaseDEchelle) {
 							affPlateau[ligne][colone]=((CaseDEchelle) laCase).getCouleur().getCCode();
 							
@@ -240,9 +275,7 @@ public class Plateau {
 			}
 		}
 		
-		
-		/*Affichage*/
-	
+		/*On affiche toutes les lignes et les colonnes du tableau*/
 		for(int i = 0; i < 15; i++){
 			System.out.println();
 			
@@ -261,14 +294,15 @@ public class Plateau {
 	}
 	
 	/**
-	 * Fonction deplacent un pion sur une certaine case
+	 * Fonction pour déplacer un pion
+	 * @param p le pion à déplacer
+	 * @param c la case sur laquelle on veut que le pion aille
 	 */
-	
 	public void deplacerPionA(Pion p, Case c) {
 		
 		/*
-		 * On retire le cheval de la case ou il est et on l'ajoute a la case passer en parametre
-		 * On verifie chaque chevaux de chaque cases pour savoir si le cheval est celui passer en parametre
+		 * On retire le cheval de la case où il est et on l'ajoute à la case passée en paramètre
+		 * On vérifie chaque cheval de chaque case pour savoir si le cheval est celui passé en paramètre
 		 */
 		
 		for(Case cases : chemin) {
@@ -286,9 +320,7 @@ public class Plateau {
 				return;
 			}
 		}
-		/*
-		 * On verifie chaque chevaux de chaque cases de chaque echelle pour savoir si le cheval est celui passer en parametre
-		 */
+		/* On vérifie chaque cheval de chaque case de chaque échelle pour savoir si le cheval est celui passé en paramètre */
 		for(ArrayList<CaseDEchelle> ech : echelles) {
 			for(Case cases : ech) {
 				if(cases.getChevaux().indexOf(p) != -1) {
@@ -302,6 +334,10 @@ public class Plateau {
 		
 	}
 	
+	/**
+	 * Setter de la liste des joueurs de la partie
+	 * @param j la liste des joueurs de la partie
+	 */
 	public void setJoueurs(ArrayList<Joueur> j){
 		this.joueurs = j;
 	}

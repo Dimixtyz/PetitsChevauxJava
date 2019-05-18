@@ -2,14 +2,25 @@ package fr.joueur;
 
 import fr.jeu.Couleur;
 
+/**
+ * Classe Pion du jeu des petits chevaux
+ * @author Quentin Fontaine
+ */
+
 public class Pion {
 	
+	/**
+	 * Identifiant du pion
+	 */
 	private String id;
+	/**
+	 * Couleur du pion
+	 */
 	private Couleur couleur;
 	
 	/**
 	 * Constructeur d'un pion
-	 * @param id numero unique pour identifier un pion
+	 * @param id code unique pour identifier un pion
 	 * @param c couleur du pion
 	 */
 	public Pion(String id, Couleur c) {
@@ -26,8 +37,8 @@ public class Pion {
 	}
 	
 	/**
-	 * Getter de l'id du pion
-	 * @return l'id du pion
+	 * Getter de l'identifiant du pion
+	 * @return l'identifiant du pion
 	 */
 	public String getId() {
 		return this.id;

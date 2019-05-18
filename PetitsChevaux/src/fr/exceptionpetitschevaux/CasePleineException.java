@@ -1,5 +1,10 @@
 package fr.exceptionpetitschevaux;
 
+/**
+ * Classe d'exception si la case est pleine
+ * @author Quentin Fontaine
+ */
+
 public class CasePleineException extends Exception{
 	
 	public CasePleineException(){
