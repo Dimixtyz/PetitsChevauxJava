@@ -324,7 +324,7 @@ public class Partie {
 		}while(resultatDe == 6 && nombreTours <= 1);
 		
 		/*On définit le joueur suivant comme joueur courant*/
-		setjoueurCourant(joueurCourant);
+		setJoueurSuivant(joueurCourant);
 		
 		
 	}
@@ -371,10 +371,14 @@ public class Partie {
 	 * Définit le joueur suivant qui va jouer
 	 * @param joueurActuel le joueur qui vient de jouer
 	 */
-	public void setjoueurCourant(Joueur joueurActuel) {
+	public void setJoueurSuivant(Joueur joueurActuel) {
 		int numJ = joueurs.indexOf(joueurActuel);
 		numJ = (numJ+1)%joueurs.size();
 		this.joueurCourant = joueurs.get(numJ);
+	}
+	
+	public void setJoueurCourant(Joueur j) {
+		this.joueurCourant = j;
 	}
 	
 	/**
